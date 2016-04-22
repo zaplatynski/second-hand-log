@@ -8,11 +8,11 @@ In contrast to the Java's JConsole it will keep the log and can be reopened.
  
 ## Compilation instruction
 
-Maven is used to assemble the FSM. How to do that I refer to the official documentation at the [FS Dev Tools](https://github.com/e-Spirit/FSDevTools/blob/master/README.md) for resolving FirstSpirit dependencies.
+Maven is used to compile and assemble the FirstSpirit module (FSM). How to do that please refer to the official documentation at the [FS Dev Tools](https://github.com/e-Spirit/FSDevTools/blob/master/README.md) for resolving FirstSpirit dependencies.
 
 ##  Disclaimer
 
-By using it you agree to the license stated in the file [LICENSE](LICENSE).
+By using it you agree to the license stated in the file [LICENSE](LICENSE). This is an unofficial FSM and will not be supported by the [e-Spirit AG](http://www.e-spirit.com/).
 FirstSpirit is a trade mark by the [e-Spirit AG](http://www.e-spirit.com/).
 
 

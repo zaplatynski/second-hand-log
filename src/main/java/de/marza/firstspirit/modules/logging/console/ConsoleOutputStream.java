@@ -1,12 +1,11 @@
 package de.marza.firstspirit.modules.logging.console;
 
-import java.awt.Color;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 /**
  * Class to intercept output from a PrintStream and add it to a Document. The output can optionally be redirected to a different PrintStream. The text
@@ -15,10 +14,10 @@ import javax.swing.text.StyleConstants;
 class ConsoleOutputStream extends ByteArrayOutputStream {
 
     private MessageConsole messageConsole;
-    private final String EOL = System.getProperty("line.separator");
+    private final String EOL = System.lineSeparator();
     private SimpleAttributeSet attributes;
     private PrintStream printStream;
-    private StringBuffer buffer = new StringBuffer(80);
+    private StringBuilder buffer = new StringBuilder(80);
     private boolean isFirstLine;
 
     /**
