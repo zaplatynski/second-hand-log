@@ -1,0 +1,9 @@
+<html>
+<h1>The Second-Hand Log</h2>
+<p>
+<a href="https://github.com/zaplatynski/second-hand-log">Fork me on GitHub!</a>
+</p>
+<p>
+Please file any <a href="https://github.com/zaplatynski/second-hand-log/issues">issues like bugs or feature requests</a> at GitHub. Thanks!
+</p>
+</html>
