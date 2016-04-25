@@ -1,6 +1,9 @@
 package de.marza.firstspirit.modules.logging;
 
+import de.marza.firstspirit.modules.logging.console.ConsoleWindow;
 import de.marza.firstspirit.modules.logging.toolbar.LoggingViewToolbarItem;
+
+import javax.swing.*;
 
 public class LoggingViewToolbarItemTest {
 
@@ -8,6 +11,8 @@ public class LoggingViewToolbarItemTest {
         final LoggingViewToolbarItem view = new LoggingViewToolbarItem();
 
         view.execute(null);
+
+        ConsoleWindow.getInstance().getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         simulateLogEvents();
     }

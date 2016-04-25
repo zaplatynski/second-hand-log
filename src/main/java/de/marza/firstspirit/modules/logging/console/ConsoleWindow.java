@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ConsoleWindow {
@@ -16,6 +17,7 @@ public class ConsoleWindow {
     private JFrame window;
     private MessageConsole console;
 
+    @NotNull
     public static ConsoleWindow getInstance() {
         return SELF;
     }
@@ -26,6 +28,7 @@ public class ConsoleWindow {
         menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules.logging.MenuLabels");
     }
 
+    @NotNull
     public JFrame getFrame() {
         if (window == null) {
             window = setupFrame();
@@ -41,8 +44,9 @@ public class ConsoleWindow {
         return window;
     }
 
+    @NotNull
     private JFrame setupFrame() {
-        final JFrame frame = new JFrame("The Second-Hand Log");
+        final JFrame frame = new JFrame(menuLabels.getString("appName"));
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -61,21 +65,42 @@ public class ConsoleWindow {
 
         final JMenu fileMenu = new JMenu(menuLabels.getString("fileMenu"));
         menubar.add(fileMenu);
+        fileMenu.setMnemonic(isGerman() ? 'D' : 'F');
 
         final JMenuItem close = new JMenuItem(menuLabels.getString("closeItem"));
         fileMenu.add(close);
         close.setActionCommand(MenuActions.CLOSE.name());
         close.addActionListener(menuActionLisener);
+        close.setMnemonic(isGerman() ? 'S' : 'C');
+        close.setAccelerator(KeyStroke.getKeyStroke("alt F4"));
 
         final JMenu helpMenu = new JMenu(menuLabels.getString("helpMenu"));
         menubar.add(helpMenu);
+        helpMenu.setMnemonic('H');
+
+        final JMenuItem contents = new JMenuItem(menuLabels.getString("contents"));
+        helpMenu.add(contents);
+        contents.addActionListener(menuActionLisener);
+        contents.setActionCommand(MenuActions.SHOW_HELP_CONTENTS.name());
+
+        final JMenuItem report = new JMenuItem(menuLabels.getString("report.a.bug.or.feature"));
+        helpMenu.add(report);
+        report.addActionListener(menuActionLisener);
+        report.setActionCommand(MenuActions.SHOW_BUGS_FEATURES.name());
+
+        helpMenu.addSeparator();
 
         final JMenuItem about = new JMenuItem(menuLabels.getString("aboutItem"));
         helpMenu.add(about);
         about.addActionListener(menuActionLisener);
         about.setActionCommand(MenuActions.SHOW_INFO.name());
+        about.setMnemonic(isGerman() ? 'Ü' : 'A');
 
 
+    }
+
+    private static boolean isGerman() {
+        return Locale.GERMAN.getISO3Language().equalsIgnoreCase(Locale.getDefault().getISO3Language());
     }
 
     @NotNull
@@ -99,19 +124,23 @@ public class ConsoleWindow {
         window.requestFocus();
     }
 
+    @NotNull
     public MessageConsole getConsole() {
         getFrame();
         return console;
     }
 
+    @NotNull
     public ImageIcon getIcon() {
         return icon;
     }
 
+    @NotNull
     public ImageIcon getImageIconPressed() {
         return imageIconPressed;
     }
 
+    @NotNull
     public ResourceBundle getMenuLabels() {
         return menuLabels;
     }

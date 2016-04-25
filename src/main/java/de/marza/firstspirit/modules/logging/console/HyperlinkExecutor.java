@@ -10,19 +10,25 @@ import java.net.URISyntaxException;
 public class HyperlinkExecutor implements HyperlinkListener {
 
     @Override
-    public void hyperlinkUpdate(final HyperlinkEvent e) {
+    public void hyperlinkUpdate(final HyperlinkEvent event) {
         URI uri = null;
         try {
-            uri = e.getURL().toURI();
+            uri = event.getURL().toURI();
         } catch (final URISyntaxException exception) {
             System.err.println("An error occurred while retrieving URI:" + exception.toString());
             exception.printStackTrace(System.err);
         }
-        browseTo(e, uri);
+        if (isClicked(event)) {
+            browseTo(uri);
+        }
     }
 
-    private void browseTo(final HyperlinkEvent e, final URI uri) {
-        if (uri != null && Desktop.isDesktopSupported() && isClicked(e)) {
+    private static boolean isClicked(final HyperlinkEvent e) {
+        return e.getEventType() == HyperlinkEvent.EventType.ACTIVATED;
+    }
+
+    public static void browseTo(final URI uri) {
+        if (uri != null && Desktop.isDesktopSupported()) {
             try {
                 Desktop.getDesktop().browse(uri);
             } catch (final IOException exception) {
@@ -32,7 +38,5 @@ public class HyperlinkExecutor implements HyperlinkListener {
         }
     }
 
-    private static boolean isClicked(final HyperlinkEvent e) {
-        return e.getEventType() == HyperlinkEvent.EventType.ACTIVATED;
-    }
+
 }

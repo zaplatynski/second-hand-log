@@ -16,7 +16,7 @@ Please file any bug or feature request here at [github.com/zaplatynski/second-ha
  
 ## Compilation instruction
 
-Maven is used to compile and assemble the FirstSpirit module (FSM). How to do that please refer to the official developer documentation at the [FS Dev Tools](https://github.com/e-Spirit/FSDevTools/) for resolving FirstSpirit dependencies such as the FirstSpirit Access API.
+Maven is used to compile and assemble the FirstSpirit module (FSM). How to do that please refer to the official developer documentation at the [FSDevTools](https://github.com/e-Spirit/FSDevTools/) for resolving FirstSpirit dependencies such as the FirstSpirit Access API.
 
 ##  Disclaimer
 
