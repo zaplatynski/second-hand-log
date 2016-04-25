@@ -5,6 +5,14 @@ The Second-Hand Log is a tiny extension for the [FirstSpirit CMS](http://www.e-s
 Its aim is to help FirstSpirit template and module developers during their work in the FirstSpirit SiteArchitect by displaying a message console which displays Java's System.out and System.err output.
 
 In contrast to the Java's JConsole it will keep the log and can be reopened.
+
+## Download
+
+The releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).
+
+## Bugs and feature requests
+
+Please file any bug or feature request here at [github.com/zaplatynski/second-hand-log/issues](https://github.com/zaplatynski/second-hand-log/issues). Thanks!
  
 ## Compilation instruction
 
