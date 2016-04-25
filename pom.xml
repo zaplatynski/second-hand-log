@@ -5,7 +5,7 @@
 
     <groupId>de.marza.firstspirit.modules</groupId>
     <artifactId>the-second-hand-log</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
     <name>The Second-Hand Log</name>
 
@@ -33,6 +33,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/*.txt</include>
                 </includes>
             </resource>
             <resource>
@@ -79,7 +80,7 @@
                 <version>2.6</version>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
-                    <descriptor>${project.build.sourceDirectory}/main/assemblies/fsm.xml</descriptor>
+                    <descriptor>src/main/assemblies/fsm.xml</descriptor>
                 </configuration>
                 <executions>
                     <execution>
@@ -104,11 +105,8 @@
                             <goal>rename</goal>
                         </goals>
                         <configuration>
-                            <sourceFile>${project.build.outputDirectory}/${project.artifactId}-${project.version}.zip
-                            </sourceFile>
-                            <destinationFile>
-                                ${project.build.outputDirectory}/${project.artifactId}-${project.version}.fsm
-                            </destinationFile>
+                            <sourceFile>target/${project.artifactId}-${project.version}.zip</sourceFile>
+                            <destinationFile>target/${project.artifactId}-${project.version}.fsm</destinationFile>
                         </configuration>
                     </execution>
                 </executions>

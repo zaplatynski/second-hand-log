@@ -3,14 +3,11 @@ package de.marza.firstspirit.modules.logging.console;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URISyntaxException;
 
 
 public class MenuController implements Runnable {
@@ -40,7 +37,6 @@ public class MenuController implements Runnable {
     private JEditorPane readAboutText() {
         JEditorPane message = null;
 
-
         try (final BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/about.txt")))) {
             String line;
             final StringBuilder sb = new StringBuilder();
@@ -51,23 +47,12 @@ public class MenuController implements Runnable {
             message.setEditable(false);
             final Color backgrounfdColor = UIManager.getColor("Panel.background");
             message.setBackground(backgrounfdColor);
-            message.addHyperlinkListener(new HyperlinkListener() {
-                @Override
-                public void hyperlinkUpdate(final HyperlinkEvent e) {
-                    if (Desktop.isDesktopSupported() && e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                        try {
-                            Desktop.getDesktop().browse(e.getURL().toURI());
-                        } catch (final IOException | URISyntaxException exception) {
-                            System.err.println("An error occurred while reading the about text:" + exception.toString());
-                            exception.printStackTrace(System.err);
-                        }
-                    }
-                }
-            });
+            message.addHyperlinkListener(new HyperlinkExecutor());
         } catch (final IOException exception) {
             System.err.println("An error occurred while reading the about text:" + exception.toString());
             exception.printStackTrace(System.err);
         }
         return message;
     }
+
 }
