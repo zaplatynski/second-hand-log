@@ -29,7 +29,7 @@ public class MenuController implements Runnable {
                 break;
             case SHOW_INFO:
                 final String title = consoleWindow.getMenuLabels().getString("aboutItem");
-                JOptionPane.showMessageDialog(parent, readAboutText(), title, JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(parent, readAboutText(), title, JOptionPane.PLAIN_MESSAGE);
                 break;
             case SHOW_BUGS_FEATURES:
                 HyperlinkExecutor.browseTo(URI.create("https://github.com/zaplatynski/second-hand-log/issues"));
