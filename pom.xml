@@ -5,7 +5,7 @@
 
     <groupId>de.marza.firstspirit.modules</groupId>
     <artifactId>the-second-hand-log</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
     <name>The Second-Hand Log</name>
 

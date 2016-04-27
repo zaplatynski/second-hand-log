@@ -27,15 +27,20 @@ public class MenuController implements Runnable {
             case CLOSE:
                 parent.setVisible(false);
                 break;
+            case CLEAR_LOG:
+                consoleWindow.clearLog();
+                break;
             case SHOW_INFO:
                 final String title = consoleWindow.getMenuLabels().getString("aboutItem");
                 JOptionPane.showMessageDialog(parent, readAboutText(), title, JOptionPane.PLAIN_MESSAGE);
                 break;
             case SHOW_BUGS_FEATURES:
-                HyperlinkExecutor.browseTo(URI.create("https://github.com/zaplatynski/second-hand-log/issues"));
+                final URI issues = URI.create("https://github.com/zaplatynski/second-hand-log/issues");
+                HyperlinkExecutor.browseTo(issues);
                 break;
             case SHOW_HELP_CONTENTS:
-                HyperlinkExecutor.browseTo(URI.create("https://github.com/zaplatynski/second-hand-log/wiki"));
+                final URI wiki = URI.create("https://github.com/zaplatynski/second-hand-log/wiki");
+                HyperlinkExecutor.browseTo(wiki);
                 break;
             default:
                 final String errorMessage = consoleWindow.getMenuLabels().getString("missing.menu.action");
