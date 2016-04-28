@@ -1,7 +1,8 @@
 <html>
 <h1>The Second-Hand Log version ${project.version}</h2>
+<p>Developed by <a href="https://github.com/zaplatynski/">Marian Zaplatynski</a>.</p>
 <p>
-Visit this project on <a href="https://github.com/zaplatynski/second-hand-log">GitHub</a>!
+Visit this project on <a href="https://github.com/zaplatynski/second-hand-log">GitHub</a> and learn by example how to develop own FirstSpirit Modules (FSM).
 </p>
 <p>
 This FirstSpirit Module is licensed unter a <a href="https://github.com/zaplatynski/second-hand-log/blob/master/LICENSE">MIT-License</a>.

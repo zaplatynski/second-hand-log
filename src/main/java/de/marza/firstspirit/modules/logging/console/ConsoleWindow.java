@@ -81,6 +81,15 @@ public class ConsoleWindow {
         menubar.add(edit);
         edit.setMnemonic(isGerman() ? 'B' : 'E');
 
+        final JMenuItem copy = new JMenuItem(menuLabels.getString("copyLog"));
+        edit.add(copy);
+        copy.setActionCommand(MenuActions.COPY_LOG.name());
+        copy.addActionListener(menuActionLisener);
+        copy.setMnemonic(isGerman() ? 'K' : 'C');
+        copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
+
+        edit.addSeparator();
+
         final JMenuItem clear = new JMenuItem(menuLabels.getString("clearLog"));
         edit.add(clear);
         clear.setActionCommand(MenuActions.CLEAR_LOG.name());
@@ -98,7 +107,7 @@ public class ConsoleWindow {
         contents.setActionCommand(MenuActions.SHOW_HELP_CONTENTS.name());
         contents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 
-        final JMenuItem report = new JMenuItem(menuLabels.getString("report.a.bug.or.feature"));
+        final JMenuItem report = new JMenuItem(menuLabels.getString("reportIssue"));
         helpMenu.add(report);
         report.addActionListener(menuActionLisener);
         report.setActionCommand(MenuActions.SHOW_BUGS_FEATURES.name());
@@ -163,5 +172,9 @@ public class ConsoleWindow {
 
     public void clearLog() {
         textComponent.setText("");
+    }
+
+    public String getLogMessages() {
+        return textComponent.getText();
     }
 }

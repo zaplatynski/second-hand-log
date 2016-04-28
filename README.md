@@ -8,8 +8,10 @@ In contrast to the Java's JConsole it will keep the log and can be reopened.
 
 ## Download
 
-The releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).
-Built with **Java 8** and **FirstSpirit 5.2.313** (see [Maven pom](pom.xml)).
+The *ready-to-use binary* releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).
+Built with **Java 8** and compiled against **FirstSpirit Access API 5.2.313** (see [Maven pom](pom.xml)).
+
+This means the FSM should work with newer or older versions of FirstSpirit since the used API in this FSM is quite stable but it has not been tested or verified. Of cause everybody is invited to compile an own version of the FSM with Java 7 or an older version of FirstSpirit.
 
 ## Bugs and feature requests
 
@@ -23,7 +25,7 @@ mvn clean verify
 ```
 How to do that please refer to the official developer documentation at the [FSDevTools](https://github.com/e-Spirit/FSDevTools/) for resolving FirstSpirit dependencies such as the FirstSpirit Access API.
 
-If you need to specify an *other FirstSpirit version* you can bypass the built-in version like this:
+If you need to specify an *other FirstSpirit version* (e.g. 5.2.212 instead of 5.2.313) you can bypass the built-in version like this:
 ```
 mvn clean verify -Dfirstspirit.version=5.2.212
 ```
