@@ -8,15 +8,11 @@ import javax.swing.text.JTextComponent;
 
 /**
  * The type Message console.
- *
- * Create a simple console to display text messages.
- *
- * Messages can be directed here from different sources. Each source can have its messages displayed
- * in a different color.
- *
- * Messages can either be appended to the console or inserted as the first line of the console
- *
- * You can limit the number of lines to hold in the Document.
+ * <p>Create a simple console to display text messages.</p>
+ * <p>Messages can be directed here from different sources. Each source can have its messages
+ * displayedin a different color.</p>
+ * <p>Messages can either be appended to the console or inserted as the first line of the
+ * console. You can limit the number of lines to hold in the Document.</p>
  */
 public class MessageConsole {
 
@@ -37,8 +33,8 @@ public class MessageConsole {
   /**
    * Use the text component specified as a simply console to display text messages.
    *
-   * The messages can either be appended to the end of the console or inserted as the first line of
-   * the console.
+   * <p>The messages can either be appended to the end of the console or inserted as the
+   * first line of the console.</p>
    *
    * @param textComponent the text component
    * @param isAppend      the is append
@@ -83,9 +79,9 @@ public class MessageConsole {
   /**
    * Redirect err.
    *
-   * Redirect the output from the standard error to the console using the specified color and
+   * <p>Redirect the output from the standard error to the console using the specified color and
    * PrintStream. When a PrintStream is specified the message will be added to the Document before
-   * it is also written to the PrintStream.
+   * it is also written to the PrintStream.</p>
    *
    * @param textColor   the text color
    * @param printStream the print stream
@@ -97,10 +93,10 @@ public class MessageConsole {
 
   /**
    * Sets message lines.
-   *
+   * <p>
    * To prevent memory from being used up you can control the number of lines to display in the
    * console.
-   *
+   * </p>
    * This number can be dynamically changed, but the console will only be updated the next time the
    * Document is updated.
    *

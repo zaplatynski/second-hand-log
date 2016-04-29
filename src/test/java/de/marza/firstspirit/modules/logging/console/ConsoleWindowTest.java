@@ -1,6 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  * The type Console window test.
@@ -15,7 +16,7 @@ public class ConsoleWindowTest {
    */
   public static void main(final String[] args) throws Exception {
 
-    ConsoleWindow.getInstance().getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    ConsoleWindow.getInstance().getFrame().setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     ConsoleWindow.getInstance().show();
 

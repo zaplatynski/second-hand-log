@@ -9,9 +9,9 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
 /**
- * Class to intercept output from a PrintStream and add it to a Document. The output can optionally
- * be redirected to a different PrintStream. The text displayed in the Document can be color coded
- * to indicate the output source.
+ * Class to intercept output from a PrintStream and add it to a Document.
+ * <p>The output can optionally be redirected to a different PrintStream. The text displayed in
+ * the Document can be color coded to indicate the output source.</p>
  */
 public class ConsoleOutputStream extends ByteArrayOutputStream {
 
@@ -69,13 +69,13 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
   }
 
   /**
-   * We don't want to have blank lines in the Document. The first line added will simply be the
-   * message. For additional lines it will be: <p> newLine + message
+   * We don't want to have blank lines in the Document. <p>The first line added will simply be the
+   * message. For additional lines it will be: newLine + message.</p>
    */
   private void handleAppend(final String message) {
-    //  This check is needed in case the text in the Document has been
-    //	cleared. The buffer may contain the endOfLine string from the previous
-    //  message.
+    // This check is needed in case the text in the Document has been
+    // cleared. The buffer may contain the endOfLine string from the previous
+    // message.
 
     if (messageConsole.getDocument().getLength() == 0) {
       buffer.setLength(0);
