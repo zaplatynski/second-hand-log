@@ -7,14 +7,14 @@ import java.awt.datatransfer.Transferable;
 
 public class LogClipboardOnwer implements ClipboardOwner {
 
-    private static LogClipboardOnwer self = new LogClipboardOnwer();
+  private static LogClipboardOnwer self = new LogClipboardOnwer();
 
-    public static ClipboardOwner getInstance() {
-        return self;
-    }
+  public static ClipboardOwner getInstance() {
+    return self;
+  }
 
-    @Override
-    public void lostOwnership(final Clipboard clipboard, final Transferable contents) {
-        //who cares?
-    }
+  @Override
+  public void lostOwnership(final Clipboard clipboard, final Transferable contents) {
+    //who cares?
+  }
 }

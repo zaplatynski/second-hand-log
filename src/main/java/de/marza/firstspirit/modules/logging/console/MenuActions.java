@@ -4,42 +4,106 @@ package de.marza.firstspirit.modules.logging.console;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The enum Menu actions.
+ */
 public enum MenuActions {
 
-    CLOSE,
-    COPY_LOG,
-    CUT_LOG,
-    CLEAR_LOG,
-    SHOW_INFO,
-    SHOW_HELP_CONTENTS,
-    SHOW_BUGS_FEATURES,
-    SHOW_LOG_LINES_100(100),
-    SHOW_LOG_LINES_500(500),
-    SHOW_LOG_LINES_1K(1000),
-    SHOW_LOG_LINES_2K(2000),
-    SHOW_LOG_LINES_5K(5000),
-    SHOW_LOG_LINES_10K(10000);
+  /**
+   * Close menu actions.
+   */
+  CLOSE,
 
-    private final int lines;
+  /**
+   * Copy log menu actions.
+   */
+  COPY_LOG,
 
-    MenuActions() {
-        this.lines = 0;
-    }
+  /**
+   * Cut log menu actions.
+   */
+  CUT_LOG,
 
-    MenuActions(final int lines) {
-        this.lines = lines;
-    }
+  /**
+   * Clear log menu actions.
+   */
+  CLEAR_LOG,
 
-    public int getLines() {
-        return lines;
-    }
+  /**
+   * Show info menu actions.
+   */
+  SHOW_INFO,
 
-    public static List<MenuActions> logLines() {
-        return Arrays.asList(SHOW_LOG_LINES_100,
-                SHOW_LOG_LINES_500,
-                SHOW_LOG_LINES_1K,
-                SHOW_LOG_LINES_2K,
-                SHOW_LOG_LINES_5K,
-                SHOW_LOG_LINES_10K);
-    }
+  /**
+   * Show help contents menu actions.
+   */
+  SHOW_HELP_CONTENTS,
+
+  /**
+   * Show bugs features menu actions.
+   */
+  SHOW_BUGS_FEATURES,
+
+  /**
+   * Show log lines 100 menu actions.
+   */
+  SHOW_LOG_LINES_100(100),
+
+  /**
+   * Show log lines 500 menu actions.
+   */
+  SHOW_LOG_LINES_500(500),
+
+  /**
+   * Show log lines 1 k menu actions.
+   */
+  SHOW_LOG_LINES_1K(1000),
+
+  /**
+   * Show log lines 2 k menu actions.
+   */
+  SHOW_LOG_LINES_2K(2000),
+
+  /**
+   * Show log lines 5 k menu actions.
+   */
+  SHOW_LOG_LINES_5K(5000),
+
+  /**
+   * Show log lines 10 k menu actions.
+   */
+  SHOW_LOG_LINES_10K(10000);
+
+  private final int lines;
+
+  MenuActions() {
+    this.lines = 0;
+  }
+
+  MenuActions(final int lines) {
+    this.lines = lines;
+  }
+
+  /**
+   * Log lines list.
+   *
+   * @return the list
+   */
+  public static List<MenuActions> logLines() {
+    return Arrays.asList(SHOW_LOG_LINES_100,
+        SHOW_LOG_LINES_500,
+        SHOW_LOG_LINES_1K,
+        SHOW_LOG_LINES_2K,
+        SHOW_LOG_LINES_5K,
+        SHOW_LOG_LINES_10K);
+  }
+
+  /**
+   * Gets lines.
+   *
+   * @return the lines
+   */
+  public int getLines() {
+    return lines;
+  }
 }
