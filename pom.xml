@@ -5,9 +5,11 @@
 
     <groupId>de.marza.firstspirit.modules</groupId>
     <artifactId>the-second-hand-log</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
+
     <name>The Second-Hand Log</name>
+    <description>A tiny extension for the FirstSpirit CMS for displaying a log console</description>
 
     <inceptionYear>2016</inceptionYear>
 

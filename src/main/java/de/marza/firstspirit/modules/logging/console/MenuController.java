@@ -26,16 +26,19 @@ public class MenuController implements Runnable {
     public void run() {
         final ConsoleWindow consoleWindow = ConsoleWindow.getInstance();
         final JFrame parent = consoleWindow.getFrame();
-        switch (MenuActions.valueOf(event.getActionCommand())) {
+        final MenuActions menuAction = MenuActions.valueOf(event.getActionCommand());
+        switch (menuAction) {
             case CLOSE:
                 parent.setVisible(false);
                 break;
             case COPY_LOG:
-                final String logMessages = consoleWindow.getLogMessages();
-                copyToClipboard(logMessages);
+                copyToClipboard(consoleWindow.getLogMessages());
                 break;
+            case CUT_LOG:
+                copyToClipboard(consoleWindow.getLogMessages()); // let it fall through
             case CLEAR_LOG:
                 consoleWindow.clearLog();
+                parent.repaint();
                 break;
             case SHOW_INFO:
                 final String title = consoleWindow.getMenuLabels().getString("aboutItem");
@@ -48,6 +51,14 @@ public class MenuController implements Runnable {
             case SHOW_HELP_CONTENTS:
                 final URI wiki = URI.create("https://github.com/zaplatynski/second-hand-log/wiki");
                 HyperlinkExecutor.browseTo(wiki);
+                break;
+            case SHOW_LOG_LINES_100:
+            case SHOW_LOG_LINES_1K:
+            case SHOW_LOG_LINES_2K:
+            case SHOW_LOG_LINES_5K:
+            case SHOW_LOG_LINES_10K:
+                consoleWindow.getConsole().setMessageLines(menuAction.getLines());
+                parent.repaint();
                 break;
             default:
                 final String errorMessage = consoleWindow.getMenuLabels().getString("missingMenuAction");

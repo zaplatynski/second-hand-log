@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 public class ConsoleWindow {
 
     private static final ConsoleWindow SELF = new ConsoleWindow();
+    private static final int INITIAL_MAX_LOG_LINES = MenuActions.SHOW_LOG_LINES_1K.getLines();
     private final ImageIcon icon;
     private final ImageIcon imageIconPressed;
     private final ResourceBundle menuLabels;
@@ -88,7 +89,12 @@ public class ConsoleWindow {
         copy.setMnemonic(isGerman() ? 'K' : 'C');
         copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
 
-        edit.addSeparator();
+        final JMenuItem cut = new JMenuItem(menuLabels.getString("cutLog"));
+        edit.add(cut);
+        cut.setActionCommand(MenuActions.CUT_LOG.name());
+        cut.addActionListener(menuActionLisener);
+        cut.setMnemonic(isGerman() ? 'O' : 'U');
+        cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
 
         final JMenuItem clear = new JMenuItem(menuLabels.getString("clearLog"));
         edit.add(clear);
@@ -96,6 +102,21 @@ public class ConsoleWindow {
         clear.addActionListener(menuActionLisener);
         clear.setMnemonic(isGerman() ? 'L' : 'C');
         clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+
+        edit.addSeparator();
+
+        final JMenu viewLogLines = new JMenu(menuLabels.getString("viewMaxLines"));
+        edit.add(viewLogLines);
+        final ButtonGroup logLinesGroup = new ButtonGroup();
+        for (final MenuActions maxLogLines : MenuActions.logLines()) {
+            final JRadioButtonMenuItem submenuItem = new JRadioButtonMenuItem("Maximum " + maxLogLines.getLines());
+            viewLogLines.add(submenuItem);
+            logLinesGroup.add(submenuItem);
+            submenuItem.setSelected(maxLogLines.getLines() == INITIAL_MAX_LOG_LINES);
+            submenuItem.addActionListener(menuActionLisener);
+            submenuItem.setActionCommand(maxLogLines.name());
+        }
+
 
         final JMenu helpMenu = new JMenu(menuLabels.getString("helpMenu"));
         menubar.add(helpMenu);
@@ -140,7 +161,7 @@ public class ConsoleWindow {
         console = new MessageConsole(textComponent);
         console.redirectOut(null, System.out);
         console.redirectErr(Color.RED, System.err);
-        console.setMessageLines(8000);
+        console.setMessageLines(INITIAL_MAX_LOG_LINES);
     }
 
     public void show() {

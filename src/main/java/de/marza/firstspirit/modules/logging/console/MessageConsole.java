@@ -1,11 +1,9 @@
 package de.marza.firstspirit.modules.logging.console;
 
-import java.awt.Color;
-import java.io.PrintStream;
-
-import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.io.PrintStream;
 
 /**
  * The type Message console.
@@ -23,7 +21,7 @@ public class MessageConsole {
     private JTextComponent textComponent;
     private Document document;
     private boolean isAppend;
-    private DocumentListener limitLinesListener;
+    private LimitLinesDocumentListener limitLinesListener;
 
     /**
      * Instantiates a new Message console.
@@ -133,5 +131,9 @@ public class MessageConsole {
      */
     public JTextComponent getTextComponent() {
         return textComponent;
+    }
+
+    public int getMessagesLines() {
+        return limitLinesListener.getLimitLines();
     }
 }
