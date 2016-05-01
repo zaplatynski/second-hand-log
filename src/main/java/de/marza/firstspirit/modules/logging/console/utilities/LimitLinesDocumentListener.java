@@ -3,9 +3,6 @@ package de.marza.firstspirit.modules.logging.console.utilities;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 
 /**
  * A class to control the maximum number of lines to be stored in a Document. <p> Excess lines can
@@ -16,28 +13,18 @@ import javax.swing.text.Element;
 public class LimitLinesDocumentListener implements DocumentListener {
 
   private int maximumLines;
-  private boolean isRemoveFromStart;
-
-  /**
-   * Specify the number of lines to be stored in the Document. Extra lines will be removed from the
-   * start of the Document.
-   *
-   * @param maximumLines the maximum lines
-   */
-  public LimitLinesDocumentListener(final int maximumLines) {
-    this(maximumLines, true);
-  }
+  private boolean removeFromStart;
 
   /**
    * Specify the number of lines to be stored in the Document. Extra lines will be removed from the
    * start or end of the Document, depending on the boolean value specified.
    *
    * @param maximumLines      the maximum lines
-   * @param isRemoveFromStart the is remove from start
+   * @param removeFromStart the is remove from start
    */
-  public LimitLinesDocumentListener(final int maximumLines, final boolean isRemoveFromStart) {
-    setLimitLines(maximumLines);
-    this.isRemoveFromStart = isRemoveFromStart;
+  public LimitLinesDocumentListener(final int maximumLines, final boolean removeFromStart) {
+    setMaxiumLines(maximumLines);
+    this.removeFromStart = removeFromStart;
   }
 
   /**
@@ -45,7 +32,7 @@ public class LimitLinesDocumentListener implements DocumentListener {
    *
    * @return the limit lines
    */
-  public int getLimitLines() {
+  public int getMaximumLines() {
     return maximumLines;
   }
 
@@ -54,7 +41,7 @@ public class LimitLinesDocumentListener implements DocumentListener {
    *
    * @param maximumLines the maximum lines
    */
-  public void setLimitLines(final int maximumLines) {
+  public void setMaxiumLines(final int maximumLines) {
     if (maximumLines < 1) {
       final String message = "Maximum lines must be greater than 0";
       throw new IllegalArgumentException(message);
@@ -68,11 +55,7 @@ public class LimitLinesDocumentListener implements DocumentListener {
     //  Changes to the Document can not be done within the listener
     //  so we need to add the processing to the end of the EDT
 
-    SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        removeLines(event);
-      }
-    });
+    SwingUtilities.invokeLater(new RemoveLinesJob(this, event));
   }
 
   @Override
@@ -84,53 +67,11 @@ public class LimitLinesDocumentListener implements DocumentListener {
   }
 
   /**
-   * Remove lines from the Document when necessary.
+   * Is remove from start activated.
+   *
+   * @return true if yes
    */
-  private void removeLines(final DocumentEvent event) {
-    //  The root Element of the Document will tell us the total number
-    //  of line in the Document.
-
-    final Document document = event.getDocument();
-    final Element root = document.getDefaultRootElement();
-
-    while (root.getElementCount() > maximumLines) {
-      if (isRemoveFromStart) {
-        removeFromStart(document, root);
-      } else {
-        removeFromEnd(document, root);
-      }
-    }
-  }
-
-  /**
-   * Remove lines from the start of the Document.
-   */
-  private void removeFromStart(final Document document, final Element root) {
-    final Element line = root.getElement(0);
-    final int end = line.getEndOffset();
-
-    try {
-      document.remove(0, end);
-    } catch (final BadLocationException ble) {
-      System.out.println(ble);
-    }
-  }
-
-  /**
-   * Remove lines from the end of the Document.
-   */
-  private void removeFromEnd(final Document document, final Element root) {
-    //  We use start minus 1 to make sure we remove the newline
-    //  character of the previous line
-
-    final Element line = root.getElement(root.getElementCount() - 1);
-    final int start = line.getStartOffset();
-    final int end = line.getEndOffset();
-
-    try {
-      document.remove(start - 1, end - start);
-    } catch (final BadLocationException ble) {
-      System.out.println(ble);
-    }
+  public boolean isRemoveFromStart() {
+    return removeFromStart;
   }
 }

@@ -1,12 +1,9 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import de.marza.firstspirit.modules.logging.console.utilities.ClipboardAccess;
 import de.marza.firstspirit.modules.logging.console.utilities.HyperlinkExecutor;
-import de.marza.firstspirit.modules.logging.console.utilities.LogClipboardOnwer;
 import de.marza.firstspirit.modules.logging.console.utilities.ReadTextFromFile;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.net.URI;
 
@@ -19,9 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class MenuController implements Runnable {
 
+  private static final ClipboardAccess CLIPBOARD_ACCESS = new ClipboardAccess();
+  private static final ReadTextFromFile ABOUT_TEXT = new ReadTextFromFile("/about.txt");
   private final ActionEvent event;
-  private final ReadTextFromFile readAboutText;
-
 
   /**
    * Instantiates a new Menu controller.
@@ -30,13 +27,6 @@ public class MenuController implements Runnable {
    */
   public MenuController(final ActionEvent event) {
     this.event = event;
-    readAboutText = new ReadTextFromFile("/about.txt");
-  }
-
-  private static void copyToClipboard(final String logMessages) {
-    final StringSelection stringSelection = new StringSelection(logMessages);
-    final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-    clipboard.setContents(stringSelection, LogClipboardOnwer.getInstance());
   }
 
   @Override
@@ -49,17 +39,17 @@ public class MenuController implements Runnable {
         parent.setVisible(false);
         break;
       case COPY_LOG:
-        copyToClipboard(consoleWindow.getLogMessages());
+        CLIPBOARD_ACCESS.copy(consoleWindow.getLogMessages());
         break;
       case CUT_LOG:
-        copyToClipboard(consoleWindow.getLogMessages()); // let it fall through
+        CLIPBOARD_ACCESS.copy(consoleWindow.getLogMessages()); // let it fall through
       case CLEAR_LOG:
         consoleWindow.clearLog();
         parent.repaint();
         break;
       case SHOW_INFO:
         final String title = consoleWindow.getMenuLabels().getString("aboutItem");
-        JOptionPane.showMessageDialog(parent, readAboutText.readAsJEditor(), title,
+        JOptionPane.showMessageDialog(parent, ABOUT_TEXT.readAsJEditor(), title,
             JOptionPane.PLAIN_MESSAGE);
         break;
       case SHOW_BUGS_FEATURES:
@@ -75,7 +65,7 @@ public class MenuController implements Runnable {
       case SHOW_LOG_LINES_2K:
       case SHOW_LOG_LINES_5K:
       case SHOW_LOG_LINES_10K:
-        consoleWindow.getConsole().setMessageLines(menuAction.getLines());
+        consoleWindow.getConsole().setMaxMessageLines(menuAction.getLines());
         parent.repaint();
         break;
       default:

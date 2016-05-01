@@ -8,11 +8,6 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
-            <source>target/${project.artifactId}-${project.version}.jar</source>
-            <outputDirectory>/lib</outputDirectory>
-            <filtered>false</filtered>
-        </file>
-        <file>
             <source>src/main/resources/module.xml</source>
             <outputDirectory>/META-INF</outputDirectory>
             <filtered>true</filtered>
@@ -23,4 +18,13 @@
             <filtered>false</filtered>
         </file>
     </files>
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <includes>
+                <include>${project.groupId}:${project.artifactId}</include>
+            </includes>
+            <useTransitiveFiltering>true</useTransitiveFiltering>
+        </dependencySet>
+    </dependencySets>
 </assembly>

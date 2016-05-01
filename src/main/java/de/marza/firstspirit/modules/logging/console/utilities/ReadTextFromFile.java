@@ -48,10 +48,9 @@ public class ReadTextFromFile {
         final Color backgrounfdColor = UIManager.getColor("Panel.background");
         message.setBackground(backgrounfdColor);
         message.addHyperlinkListener(new HyperlinkExecutor());
-      } catch (final IOException exception) {
-        System.err.println("An error occurred while reading the about text:"
+      } catch (final IOException | NullPointerException exception) {
+        System.err.println("An error occurred while reading the about text: "
             + exception.toString());
-        exception.printStackTrace(System.err);
       }
     }
     return message;

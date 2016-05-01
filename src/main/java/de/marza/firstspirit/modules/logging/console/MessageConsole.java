@@ -42,6 +42,9 @@ public class MessageConsole {
    * @param append      the is append
    */
   public MessageConsole(final JTextComponent textComponent, final boolean append) {
+    if (textComponent == null) {
+      throw new IllegalArgumentException("JTextComponent is null!");
+    }
     this.textComponent = textComponent;
     this.document = textComponent.getDocument();
     this.append = append;
@@ -104,7 +107,7 @@ public class MessageConsole {
    *
    * @param lines the lines
    */
-  public void setMessageLines(final int lines) {
+  public void setMaxMessageLines(final int lines) {
     if (limitLines != null) {
       document.removeDocumentListener(limitLines);
     }
@@ -138,9 +141,5 @@ public class MessageConsole {
    */
   public JTextComponent getTextComponent() {
     return textComponent;
-  }
-
-  public int getMessagesLines() {
-    return limitLines.getLimitLines();
   }
 }

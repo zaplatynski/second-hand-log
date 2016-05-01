@@ -188,7 +188,7 @@ public class ConsoleWindow {
     console = new MessageConsole(textComponent);
     console.redirectOut(null, System.out);
     console.redirectErr(Color.RED, System.err);
-    console.setMessageLines(MAX_LOG_LINES);
+    console.setMaxMessageLines(MAX_LOG_LINES);
   }
 
   /**
