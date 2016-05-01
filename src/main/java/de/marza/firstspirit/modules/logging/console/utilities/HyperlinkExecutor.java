@@ -1,4 +1,4 @@
-package de.marza.firstspirit.modules.logging.console;
+package de.marza.firstspirit.modules.logging.console.utilities;
 
 import java.awt.Desktop;
 import java.io.IOException;

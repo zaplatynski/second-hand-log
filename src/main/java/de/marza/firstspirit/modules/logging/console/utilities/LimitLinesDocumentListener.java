@@ -1,4 +1,4 @@
-package de.marza.firstspirit.modules.logging.console;
+package de.marza.firstspirit.modules.logging.console.utilities;
 
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
@@ -8,13 +8,10 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 
 /**
- * A class to control the maximum number of lines to be stored in a Document.
- * <p>
- * Excess lines can be removed from the start or end of the Document depending on your requirement.
- * </p>
- * a) if you append text to the Document, then you would want to remove lines from the start. b) if
- * you insert text at the beginning of the Document, then you would want to remove lines from the
- * end.
+ * A class to control the maximum number of lines to be stored in a Document. <p> Excess lines can
+ * be removed from the start or end of the Document depending on your requirement. </p> a) if you
+ * append text to the Document, then you would want to remove lines from the start. b) if you insert
+ * text at the beginning of the Document, then you would want to remove lines from the end.
  */
 public class LimitLinesDocumentListener implements DocumentListener {
 

@@ -29,7 +29,7 @@ import javax.swing.text.JTextComponent;
 public class ConsoleWindow {
 
   private static final ConsoleWindow SELF = new ConsoleWindow();
-  private static final int INITIAL_MAX_LOG_LINES = MenuActions.SHOW_LOG_LINES_1K.getLines();
+  private static final int MAX_LOG_LINES = MenuActions.SHOW_LOG_LINES_1K.getLines();
   private final ImageIcon icon;
   private final ImageIcon imageIconPressed;
   private final ResourceBundle menuLabels;
@@ -92,7 +92,7 @@ public class ConsoleWindow {
   }
 
   private void setupMenu() {
-    final MenuActionLisener menuActionLisener = new MenuActionLisener();
+    final MenuActionListener menuActionLisener = new MenuActionListener();
 
     final JMenuBar menubar = new JMenuBar();
     window.setJMenuBar(menubar);
@@ -143,7 +143,7 @@ public class ConsoleWindow {
           + maxLogLines.getLines());
       viewLogLines.add(submenuItem);
       logLinesGroup.add(submenuItem);
-      submenuItem.setSelected(maxLogLines.getLines() == INITIAL_MAX_LOG_LINES);
+      submenuItem.setSelected(maxLogLines.getLines() == MAX_LOG_LINES);
       submenuItem.addActionListener(menuActionLisener);
       submenuItem.setActionCommand(maxLogLines.name());
     }
@@ -188,7 +188,7 @@ public class ConsoleWindow {
     console = new MessageConsole(textComponent);
     console.redirectOut(null, System.out);
     console.redirectErr(Color.RED, System.err);
-    console.setMessageLines(INITIAL_MAX_LOG_LINES);
+    console.setMessageLines(MAX_LOG_LINES);
   }
 
   /**

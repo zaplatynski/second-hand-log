@@ -16,7 +16,7 @@ import javax.swing.text.StyleConstants;
 public class ConsoleOutputStream extends ByteArrayOutputStream {
 
   private final String endOfLine;
-  private final StringBuilder buffer;
+  private final StringBuilder buffer; // NOPMD
   private MessageConsole messageConsole;
   private SimpleAttributeSet attributes;
   private PrintStream printStream;
@@ -128,7 +128,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
         messageConsole.getTextComponent().setCaretPosition(0);
       }
     } catch (final BadLocationException ble) {
-      //ignore
+      ble.printStackTrace(System.out);
     }
 
     if (printStream != null) {

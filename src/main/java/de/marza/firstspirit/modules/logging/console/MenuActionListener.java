@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 
 
-public class MenuActionLisener implements ActionListener {
+public class MenuActionListener implements ActionListener {
 
   @Override
   public void actionPerformed(final ActionEvent event) {

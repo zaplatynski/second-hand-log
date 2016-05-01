@@ -1,5 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
@@ -24,11 +26,12 @@ public class ConsoleWindowTest {
   }
 
   private static void simulateLogEvents(final JFrame frame) throws InterruptedException {
+    final Random random = new Random();
     for (int i = 0; i < 10000; i++) {
       System.out.println(i + ". test message");
-      Thread.currentThread().sleep(75);
+      Thread.currentThread().sleep(75 * random.nextInt(1));
       System.err.println(++i + ". error");
-      Thread.currentThread().sleep(500);
+      Thread.currentThread().sleep(500 * random.nextInt(2));
       if (!frame.isVisible()) {
         System.exit(0);
       }

@@ -1,5 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import de.marza.firstspirit.modules.logging.console.utilities.LimitLinesDocumentListener;
+
 import java.awt.Color;
 import java.io.PrintStream;
 
@@ -18,8 +20,8 @@ public class MessageConsole {
 
   private JTextComponent textComponent;
   private Document document;
-  private boolean isAppend;
-  private LimitLinesDocumentListener limitLinesListener;
+  private boolean append;
+  private LimitLinesDocumentListener limitLines;
 
   /**
    * Instantiates a new Message console.
@@ -37,12 +39,12 @@ public class MessageConsole {
    * first line of the console.</p>
    *
    * @param textComponent the text component
-   * @param isAppend      the is append
+   * @param append      the is append
    */
-  public MessageConsole(final JTextComponent textComponent, final boolean isAppend) {
+  public MessageConsole(final JTextComponent textComponent, final boolean append) {
     this.textComponent = textComponent;
     this.document = textComponent.getDocument();
-    this.isAppend = isAppend;
+    this.append = append;
     textComponent.setEditable(false);
     textComponent.setBackground(Color.WHITE);
   }
@@ -103,12 +105,12 @@ public class MessageConsole {
    * @param lines the lines
    */
   public void setMessageLines(final int lines) {
-    if (limitLinesListener != null) {
-      document.removeDocumentListener(limitLinesListener);
+    if (limitLines != null) {
+      document.removeDocumentListener(limitLines);
     }
 
-    limitLinesListener = new LimitLinesDocumentListener(lines, isAppend);
-    document.addDocumentListener(limitLinesListener);
+    limitLines = new LimitLinesDocumentListener(lines, append);
+    document.addDocumentListener(limitLines);
   }
 
   /**
@@ -126,7 +128,7 @@ public class MessageConsole {
    * @return the boolean
    */
   public boolean isAppend() {
-    return isAppend;
+    return append;
   }
 
   /**
@@ -139,6 +141,6 @@ public class MessageConsole {
   }
 
   public int getMessagesLines() {
-    return limitLinesListener.getLimitLines();
+    return limitLines.getLimitLines();
   }
 }
