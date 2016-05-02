@@ -20,7 +20,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
   private MessageConsole messageConsole;
   private SimpleAttributeSet attributes;
   private PrintStream printStream;
-  private boolean isFirstLine;
+  private boolean firstLine;
 
   /**
    * Specify the option text color and PrintStream.
@@ -42,7 +42,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     this.printStream = printStream;
 
     if (messageConsole.isAppend()) {
-      isFirstLine = true;
+      firstLine = true;
     }
   }
 
@@ -52,6 +52,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
    * string<br> <br> The message will be treated differently depending on whether the line will be
    * appended or inserted into the Document
    */
+  @Override
   public void flush() {
     final String message = toString();
 
@@ -110,11 +111,11 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     //  In case both the standard out and standard err are being redirected
     //  we need to insert a newline character for the first line only
 
-    if (isFirstLine && messageConsole.getDocument().getLength() != 0) {
+    if (firstLine && messageConsole.getDocument().getLength() != 0) {
       buffer.insert(0, "\n");
     }
 
-    isFirstLine = false;
+    firstLine = false;
     final String line = buffer.toString();
 
     try {

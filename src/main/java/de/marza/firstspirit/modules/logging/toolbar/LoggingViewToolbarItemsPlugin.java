@@ -30,14 +30,17 @@ public class LoggingViewToolbarItemsPlugin implements JavaClientEditorialToolbar
     this.items = new ArrayList<ExecutableToolbarItem>();
   }
 
+  @Override
   public Collection<? extends JavaClientToolbarItem> getItems() {
     return Collections.unmodifiableCollection(items);
   }
 
+  @Override
   public void setUp(@NotNull final BaseContext context) {
     items.add(new LoggingViewToolbarItem());
   }
 
+  @Override
   public void tearDown() {
     // Do nothing.
   }

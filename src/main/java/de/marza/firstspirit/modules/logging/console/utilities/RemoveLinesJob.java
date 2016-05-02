@@ -25,6 +25,7 @@ public class RemoveLinesJob implements Runnable {
     this.event = event;
   }
 
+  @Override
   public void run() {
     removeLines(event);
   }
