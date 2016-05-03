@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class ReadTextFromFileTest {
 
+  public static final String EOL = System.lineSeparator();
   @Rule
   public SystemErrRule rule = new SystemErrRule();
 
@@ -26,10 +27,10 @@ public class ReadTextFromFileTest {
   public void readAsJEditor() throws Exception {
     final JEditorPane editorPane = testling.readAsJEditor();
 
-    final String expectedText = "<html>\n  " +
-        "<head>\n    \n  </head>\n  " +
-        "<body>\n    This is a test!\n  </body>\n" +
-        "</html>\n";
+    final String expectedText = "<html>" + EOL + "  " +
+        "<head>" + EOL + "    " + EOL + "  </head>" + EOL + "  " +
+        "<body>" + EOL + "    This is a test!" + EOL + "  </body>" + EOL +
+        "</html>" + EOL;
     assertThat(editorPane.getText(), is(expectedText));
   }
 
@@ -47,7 +48,7 @@ public class ReadTextFromFileTest {
 
     testling.readAsJEditor();
 
-    assertThat("An error occurred while reading the about text: java.lang.NullPointerException\n",
+    assertThat("An error occurred while reading the about text: java.lang.NullPointerException" + EOL,
         is(rule.getLog()));
   }
 }

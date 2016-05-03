@@ -19,6 +19,8 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ConsoleOutputStreamTest {
 
+  public static final String EOL = System.lineSeparator();
+
   private ConsoleOutputStream testling;
 
   private SimpleAttributeSet attributes;
@@ -47,11 +49,11 @@ public class ConsoleOutputStreamTest {
   public void flushAppend() throws Exception {
     when(console.isAppend()).thenReturn(true);
 
-    testling.write("Test 123\n".getBytes());
+    testling.write(("Test 123" + EOL).getBytes());
 
     testling.flush();
 
-    verify(document).insertString(0, "Test 123\n", attributes);
+    verify(document).insertString(0, "Test 123" + EOL, attributes);
   }
 
   @Test
@@ -66,7 +68,7 @@ public class ConsoleOutputStreamTest {
 
     testling.flush();
 
-    verify(document).insertString(0, "Test 123\n", attributes);
+    verify(document).insertString(0, "Test 123" + EOL, attributes);
   }
 
 }
