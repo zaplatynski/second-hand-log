@@ -11,6 +11,14 @@
 
     <name>The Second-Hand Log</name>
     <description>A tiny extension for the FirstSpirit CMS for displaying a log console</description>
+    
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://raw.githubusercontent.com/zaplatynski/second-hand-log/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <inceptionYear>2016</inceptionYear>
 
