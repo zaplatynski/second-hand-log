@@ -27,10 +27,10 @@ public class ReadTextFromFileTest {
   public void readAsJEditor() throws Exception {
     final JEditorPane editorPane = testling.readAsJEditor();
 
-    final String expectedText = "<html>" + EOL + "  " +
-        "<head>" + EOL + "    " + EOL + "  </head>" + EOL + "  " +
-        "<body>" + EOL + "    This is a test!" + EOL + "  </body>" + EOL +
-        "</html>" + EOL;
+    final String expectedText = "<html>\n  " +
+        "<head>\n    \n  </head>\n  " +
+        "<body>\n    This is a test!\n  </body>\n" +
+        "</html>\n";
     assertThat(editorPane.getText(), is(expectedText));
   }
 
