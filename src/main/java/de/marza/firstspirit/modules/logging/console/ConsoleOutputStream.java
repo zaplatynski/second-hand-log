@@ -16,7 +16,7 @@ import javax.swing.text.StyleConstants;
 public class ConsoleOutputStream extends ByteArrayOutputStream {
 
   private final String endOfLine;
-  private final StringBuffer buffer; // NOPMD
+  private final StringBuilder buffer; //NOPMD
   private MessageConsole messageConsole;
   private SimpleAttributeSet attributes;
   private PrintStream printStream;
@@ -32,7 +32,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
   public ConsoleOutputStream(final MessageConsole messageConsole, final Color textColor,
                              final PrintStream printStream) {
     endOfLine = System.lineSeparator();
-    buffer = new StringBuffer(80);
+    buffer = new StringBuilder(80); //NOPMD
     this.messageConsole = messageConsole;
     if (textColor != null) {
       attributes = new SimpleAttributeSet();
@@ -128,8 +128,8 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
         messageConsole.getDocument().insertString(0, line, attributes);
         messageConsole.getTextComponent().setCaretPosition(0);
       }
-    } catch (final BadLocationException ble) {
-      ble.printStackTrace(System.out);
+    } catch (final BadLocationException ble) { //NOPMD
+      //ignore to avoid stack overflows
     }
 
     if (printStream != null) {
