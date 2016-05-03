@@ -61,6 +61,7 @@ public class MenuController implements Runnable {
         HyperlinkExecutor.browseTo(wiki);
         break;
       case SHOW_LOG_LINES_100:
+      case SHOW_LOG_LINES_500:
       case SHOW_LOG_LINES_1K:
       case SHOW_LOG_LINES_2K:
       case SHOW_LOG_LINES_5K:
