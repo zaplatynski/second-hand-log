@@ -64,7 +64,7 @@ public class ConsoleOutputStreamTest {
 
     testling.flush();
 
-    testling.write("\n".getBytes());
+    testling.write(EOL.getBytes());
 
     testling.flush();
 
