@@ -33,5 +33,6 @@ mvn clean verify -Dfirstspirit.version=5.2.212
 ##  Disclaimer
 
 By using it you agree to the license stated in the file [LICENSE](LICENSE). FirstSpirit is a trade mark by the [e-Spirit AG](http://www.e-spirit.com/).
+Use this project and provided binaries at your own risk.
 
 
