@@ -189,7 +189,31 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>checkstyle</id>
+                        <id>pmd</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <!-- Reports all bugs (other values are medium and max) -->
+                    <threshold>low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <findbugsXmlOutputDirectory>${project.build.directory}/findbugs
+                    </findbugsXmlOutputDirectory>
+                    <maxRank>14</maxRank>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>findbugs</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
