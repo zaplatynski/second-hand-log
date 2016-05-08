@@ -32,7 +32,7 @@ public class MenuController implements Runnable {
   @Override
   public void run() {
     final ConsoleWindow consoleWindow = ConsoleWindow.getInstance();
-    final JFrame parent = consoleWindow.getFrame();
+    final JFrame parent = consoleWindow.getFrame(null);
     final MenuActions menuAction = MenuActions.valueOf(event.getActionCommand());
     switch (menuAction) {
       case CLOSE:

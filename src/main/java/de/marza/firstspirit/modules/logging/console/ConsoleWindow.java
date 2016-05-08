@@ -60,12 +60,13 @@ public class ConsoleWindow {
   /**
    * Gets frame.
    *
+   * @param projectName the FirstSpirit project name
    * @return the frame
    */
   @NotNull
-  public JFrame getFrame() {
+  public JFrame getFrame(final String projectName) {
     if (window == null) {
-      window = setupFrame();
+      window = setupFrame(projectName);
 
       setupMenu();
 
@@ -79,8 +80,9 @@ public class ConsoleWindow {
   }
 
   @NotNull
-  private JFrame setupFrame() {
-    final JFrame frame = new JFrame(menuLabels.getString("appName"));
+  private JFrame setupFrame(final String projectName) {
+    final JFrame frame = new JFrame(menuLabels.getString("appName")
+        + (projectName != null ? " / " + projectName : ""));
     frame.setIconImage(icon.getImage());
     frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -194,8 +196,8 @@ public class ConsoleWindow {
   /**
    * Show.
    */
-  public void show() {
-    getFrame();
+  public void show(final String projectName) {
+    getFrame(projectName);
     window.setVisible(true);
     window.requestFocus();
   }
@@ -207,7 +209,7 @@ public class ConsoleWindow {
    */
   @NotNull
   public MessageConsole getConsole() {
-    getFrame();
+    getFrame(null);
     return console;
   }
 

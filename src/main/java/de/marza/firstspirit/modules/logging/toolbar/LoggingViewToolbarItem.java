@@ -1,10 +1,13 @@
 package de.marza.firstspirit.modules.logging.toolbar;
 
+import de.espirit.firstspirit.agency.ProjectAgent;
 import de.espirit.firstspirit.client.plugin.toolbar.ExecutableToolbarItem;
 import de.espirit.firstspirit.client.plugin.toolbar.ToolbarContext;
 import de.marza.firstspirit.modules.logging.console.ConsoleWindow;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ResourceBundle;
 
 import javax.swing.Icon;
 
@@ -14,14 +17,25 @@ import javax.swing.Icon;
  */
 public class LoggingViewToolbarItem implements ExecutableToolbarItem {
 
+  private final ResourceBundle menuLabels;
+
+  /**
+   * Instantiates a new Logging view toolbar item.
+   */
+  public LoggingViewToolbarItem() {
+    this.menuLabels = ResourceBundle.getBundle(
+        "de.marza.firstspirit.modules.logging.MenuLabels");
+  }
+
   @Override
   public void execute(@NotNull final ToolbarContext context) {
-    ConsoleWindow.getInstance().show();
+    final ProjectAgent projectAgent = context.requireSpecialist(ProjectAgent.TYPE);
+    ConsoleWindow.getInstance().show(projectAgent.getName());
   }
 
   @Override
   public String getLabel(@NotNull final ToolbarContext context) {
-    return "The Second-Hand Log";
+    return menuLabels.getString("appName");
   }
 
   @Override
