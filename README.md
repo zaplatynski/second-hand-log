@@ -6,7 +6,7 @@ Its aim is to help FirstSpirit template and module developers during their work 
 
 In contrast to the Java's JConsole it will keep the log and can be reopened.
 
-## Download [![GitHub version](https://badge.fury.io/gh/zaplatynski2Fsecond-hand-log.png)](https://github.com/zaplatynski/second-hand-log/releases)
+## Download [![GitHub version](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log.svg)](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log)
 
 The *ready-to-use binary* releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).
 Built with **Java 8** and compiled against **FirstSpirit Access API 5.2.313** (see [Maven pom](pom.xml)).
