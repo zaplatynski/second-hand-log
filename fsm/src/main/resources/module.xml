@@ -13,6 +13,7 @@
         </public>
     </components>
     <resources>
-        <resource scope="module">lib/${project.artifactId}-${project.version}.jar</resource>
+        <resource scope="module">lib/${project.groupId}-console-${project.version}.jar</resource>
+        <resource scope="module">lib/${project.groupId}-toolbar-${project.version}.jar</resource>
     </resources>
 </module>

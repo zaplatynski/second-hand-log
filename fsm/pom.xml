@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
+        <artifactId>parent</artifactId>
+        <version>${global.version}</version>
+        <relativePath>/..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>the-second-hand-log</artifactId>
+    <name>${display.name}</name>
+    <packaging>fsm</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
+            <artifactId>console</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
+            <artifactId>toolbar</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <groupId>com.github.zaplatynski</groupId>
+                <artifactId>fsm-packagetype</artifactId>
+                <version>1.0</version>
+                <extensions>true</extensions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <attach>false</attach>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>src/assembly/fsm.xml</descriptor>
+                    </descriptors>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+
+</project>

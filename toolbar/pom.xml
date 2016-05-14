@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
+        <artifactId>parent</artifactId>
+        <version>${global.version}</version>
+        <relativePath>/..</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>toolbar</artifactId>
+    <name>${display.name} Toolbar</name>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>de.espirit.firstspirit</groupId>
+            <artifactId>fs-access</artifactId>
+            <version>${firstspirit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
+            <artifactId>console</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${groupId}-${artifactId}-${version}</finalName>
+    </build>
+
+
+    <profiles>
+        <profile>
+            <id>FirstSpiritVersion</id>
+            <activation>
+                <property>
+                    <name>!firstspirit.version</name>
+                </property>
+            </activation>
+            <properties>
+                <firstspirit.version>5.2.313</firstspirit.version>
+            </properties>
+        </profile>
+    </profiles>
+    
+</project>

@@ -13,7 +13,7 @@
             <filtered>true</filtered>
         </file>
         <file>
-            <source>LICENSE</source>
+            <source>../LICENSE</source>
             <outputDirectory>/</outputDirectory>
             <filtered>false</filtered>
         </file>
@@ -22,9 +22,13 @@
         <dependencySet>
             <outputDirectory>/lib</outputDirectory>
             <includes>
-                <include>${project.groupId}:${project.artifactId}</include>
+                <include>${project.groupId}:console</include>
+                <include>${project.groupId}:toolbar</include>
             </includes>
             <useTransitiveFiltering>true</useTransitiveFiltering>
+            <outputFileNameMapping>
+                ${project.groupId}-${project.artifactId}-${project.version}
+            </outputFileNameMapping>
         </dependencySet>
     </dependencySets>
 </assembly>
