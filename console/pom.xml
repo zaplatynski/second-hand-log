@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
     <build>
-        <finalName>${groupId}-${artifactId}-${version}</finalName>
+        <finalName>${jar.finalName}</finalName>
     </build>
 
 </project>

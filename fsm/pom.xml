@@ -19,13 +19,13 @@
         <dependency>
             <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
             <artifactId>console</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
             <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
             <artifactId>toolbar</artifactId>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>
