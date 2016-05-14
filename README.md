@@ -1,4 +1,4 @@
-#  The Second-Hand Log
+#  The Second-Hand Log  [![GitHub version](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log.svg)](https://github.com/zaplatynski/second-hand-log/releases/latest)
 
 The Second-Hand Log is a tiny extension for the [FirstSpirit CMS](http://www.e-spirit.com/) based on [Rob Camick's Message Console](https://tips4java.wordpress.com/2008/11/08/message-console/).
 
@@ -6,7 +6,7 @@ Its aim is to help FirstSpirit template and module developers during their work 
 
 In contrast to the Java's JConsole it will keep the log and can be reopened.
 
-## Download [![GitHub version](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log.svg)](https://github.com/zaplatynski/second-hand-log/releases/latest)
+## Download
 
 The *ready-to-use binary* releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).
 Built with **Java 8** and compiled against **FirstSpirit Access API 5.2.313** (see [Maven pom](pom.xml)).
