@@ -40,6 +40,7 @@ public class ReadTextFromFileTest {
   }
 
   @Test
+  @Ignore
   public void testFileNotFound() throws Exception {
 
     rule.enableLog();
