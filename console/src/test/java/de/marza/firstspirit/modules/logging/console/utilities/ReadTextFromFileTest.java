@@ -1,6 +1,7 @@
 package de.marza.firstspirit.modules.logging.console.utilities;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemErrRule;
