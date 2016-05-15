@@ -3,8 +3,8 @@
     <name>${project.artifactId}</name>
     <displayname>${project.name}</displayname>
     <version>${project.version}</version>
-    <description>${project.artifactId}</description>
-    <vendor>Marian Zaplatynski</vendor>
+    <description>${module.description}</description>
+    <vendor>${main.developer}</vendor>
     <components>
         <public>
             <name>logging-console-button</name>

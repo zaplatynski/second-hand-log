@@ -28,9 +28,33 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.espirit.firstspirit</groupId>
+            <artifactId>fs-access</artifactId>
+            <version>${firstspirit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
 
         <plugins>
 
@@ -57,5 +81,18 @@
 
     </build>
 
+    <profiles>
+        <profile>
+            <id>FirstSpiritVersion</id>
+            <activation>
+                <property>
+                    <name>!firstspirit.version</name>
+                </property>
+            </activation>
+            <properties>
+                <firstspirit.version>5.2.313</firstspirit.version>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
