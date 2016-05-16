@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -12,6 +13,8 @@ import javax.swing.event.HyperlinkListener;
  * The type Hyperlink executor.
  */
 public class HyperlinkExecutor implements HyperlinkListener {
+
+  private static final Logger LOGGER = Logger.getInstance();
 
   private static boolean isClicked(final HyperlinkEvent event) {
     return event.getEventType() == HyperlinkEvent.EventType.ACTIVATED;
@@ -25,11 +28,11 @@ public class HyperlinkExecutor implements HyperlinkListener {
   public static void browseTo(final URI uri) {
     if (uri != null && Desktop.isDesktopSupported()) {
       try {
-        Desktop.getDesktop().browse(uri);
+        final Desktop desktop = Desktop.getDesktop();
+        desktop.browse(uri); //NOPMD
       } catch (final IOException exception) {
-        System.err.println("An error occurred while browse to '" + uri.toString() + "':"
-            + exception.toString());
-        exception.printStackTrace(System.err);
+        LOGGER.logError("An logError occurred while browse to '%s': %s", uri.toString(),
+            exception.toString());
       }
     }
   }
@@ -38,10 +41,10 @@ public class HyperlinkExecutor implements HyperlinkListener {
   public void hyperlinkUpdate(final HyperlinkEvent event) {
     URI uri = null;
     try {
-      uri = event.getURL().toURI();
+      final URL url = event.getURL();
+      uri = url.toURI(); //NOPMD
     } catch (final URISyntaxException exception) {
-      System.err.println("An error occurred while retrieving URI:" + exception.toString());
-      exception.printStackTrace(System.err);
+      LOGGER.logError("An logError occurred while retrieving URI: %s", exception);
     }
     if (isClicked(event)) {
       browseTo(uri);

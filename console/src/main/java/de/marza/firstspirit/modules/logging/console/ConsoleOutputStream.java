@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
@@ -17,9 +19,11 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
 
   private final String endOfLine;
   private final StringBuilder buffer; //NOPMD
-  private MessageConsole messageConsole;
+  private final Document document;
+  private final JTextComponent textComponent;
+  private final boolean append;
+  private final PrintStream printStream;
   private SimpleAttributeSet attributes;
-  private PrintStream printStream;
   private boolean firstLine;
 
   /**
@@ -33,7 +37,9 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
                              final PrintStream printStream) {
     endOfLine = System.lineSeparator();
     buffer = new StringBuilder(80); //NOPMD
-    this.messageConsole = messageConsole;
+    textComponent = messageConsole.getTextComponent();
+    document = textComponent.getDocument();
+    append = messageConsole.isAppend();
     if (textColor != null) {
       attributes = new SimpleAttributeSet();
       StyleConstants.setForeground(attributes, textColor);
@@ -56,11 +62,11 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
   public void flush() {
     final String message = toString();
 
-    if (message.length() == 0) {
+    if (message.length() == 0) { //NOPMD
       return;
     }
 
-    if (messageConsole.isAppend()) {
+    if (append) {
       handleAppend(message);
     } else {
       handleInsert(message);
@@ -78,7 +84,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     // cleared. The buffer may contain the endOfLine string from the previous
     // message.
 
-    if (messageConsole.getDocument().getLength() == 0) {
+    if (document.getLength() == 0) {
       buffer.setLength(0);
     }
 
@@ -111,7 +117,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     //  In case both the standard out and standard err are being redirected
     //  we need to insert a newline character for the first line only
 
-    if (firstLine && messageConsole.getDocument().getLength() != 0) {
+    if (firstLine && document.getLength() != 0) {
       buffer.insert(0, "\n");
     }
 
@@ -119,14 +125,14 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     final String line = buffer.toString();
 
     try {
-      if (messageConsole.isAppend()) {
-        final int offset = messageConsole.getDocument().getLength();
-        messageConsole.getDocument().insertString(offset, line, attributes);
-        final int newLength = messageConsole.getDocument().getLength();
-        messageConsole.getTextComponent().setCaretPosition(newLength);
+      if (append) {
+        final int offset = document.getLength();
+        document.insertString(offset, line, attributes);
+        final int newLength = document.getLength();
+        textComponent.setCaretPosition(newLength);
       } else {
-        messageConsole.getDocument().insertString(0, line, attributes);
-        messageConsole.getTextComponent().setCaretPosition(0);
+        document.insertString(0, line, attributes);
+        textComponent.setCaretPosition(0);
       }
     } catch (final BadLocationException ble) { //NOPMD
       //ignore to avoid stack overflows

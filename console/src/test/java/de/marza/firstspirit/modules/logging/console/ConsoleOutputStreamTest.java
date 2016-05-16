@@ -36,10 +36,11 @@ public class ConsoleOutputStreamTest {
 
   @Before
   public void setUp() throws Exception {
-    testling = new ConsoleOutputStream(console, Color.BLACK, null);
-
-    when(console.getDocument()).thenReturn(document);
+    when(console.isAppend()).thenReturn(true);
     when(console.getTextComponent()).thenReturn(textComponent);
+    when(textComponent.getDocument()).thenReturn(document);
+
+    testling = new ConsoleOutputStream(console, Color.BLACK, null);
 
     attributes = new SimpleAttributeSet();
     StyleConstants.setForeground(attributes, Color.BLACK);

@@ -30,7 +30,7 @@ public enum MenuActions {
   CLEAR_LOG,
 
   /**
-   * Show info menu actions.
+   * Show logInfo menu actions.
    */
   SHOW_INFO,
 

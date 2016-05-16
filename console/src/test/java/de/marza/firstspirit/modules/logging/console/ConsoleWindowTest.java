@@ -1,5 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import de.marza.firstspirit.modules.logging.console.utilities.Logger;
+
 import org.junit.Test;
 
 import java.awt.GraphicsEnvironment;
@@ -38,11 +40,12 @@ public class ConsoleWindowTest {
   }
 
   private static void simulateLogEvents(final JFrame frame) throws InterruptedException {
+    final Logger logger = Logger.getInstance();
     final Random random = new Random();
     for (int i = 0; i < 10000; i++) {
-      System.out.println(i + ". test message");
+      logger.logInfo(i + ". test message");
       Thread.currentThread().sleep(75 * random.nextInt(1));
-      System.err.println(++i + ". error");
+      logger.logError(++i + ". logError");
       Thread.currentThread().sleep(500 * random.nextInt(2));
       if (!frame.isVisible()) {
         System.exit(0);

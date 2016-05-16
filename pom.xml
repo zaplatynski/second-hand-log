@@ -190,6 +190,10 @@
                         <ruleset>/rulesets/java/empty.xml</ruleset>
                         <ruleset>/rulesets/java/finalizers.xml</ruleset>
                         <ruleset>/rulesets/java/imports.xml</ruleset>
+                        <ruleset>/rulesets/java/coupling.xml</ruleset>
+                        <ruleset>/rulesets/java/logging-java.xml</ruleset>
+                        <ruleset>/rulesets/java/codesize.xml</ruleset>
+                        <ruleset>/rulesets/java/junit.xml</ruleset>
                         <ruleset>/rulesets/java/strings.xml</ruleset>
                         <ruleset>/rulesets/java/braces.xml</ruleset>
                         <ruleset>/rulesets/java/naming.xml</ruleset>

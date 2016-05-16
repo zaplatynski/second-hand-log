@@ -3,6 +3,7 @@ package de.marza.firstspirit.modules.logging.console.utilities;
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.swing.JEditorPane;
@@ -14,6 +15,7 @@ import javax.swing.UIManager;
  */
 public class ReadTextFromFile {
 
+  private static final Logger LOGGER = Logger.getInstance();
   private final String filePath;
   private JEditorPane message;
 
@@ -36,8 +38,9 @@ public class ReadTextFromFile {
    */
   public JEditorPane readAsJEditor() {
     if (message == null) {
-      try (final BufferedReader txtReader = new BufferedReader(new InputStreamReader(
-          getClass().getResourceAsStream(filePath)))) {
+      final InputStream inputStream = getClass().getResourceAsStream(filePath); //NOPMD
+      final InputStreamReader streamReader = new InputStreamReader(inputStream);
+      try (final BufferedReader txtReader = new BufferedReader(streamReader)) {
         String line;
         final StringBuilder buffer = new StringBuilder();
         while ((line = txtReader.readLine()) != null) {
@@ -49,8 +52,8 @@ public class ReadTextFromFile {
         message.setBackground(backgrounfdColor);
         message.addHyperlinkListener(new HyperlinkExecutor());
       } catch (final IOException | NullPointerException exception) {
-        System.err.println("An error occurred while reading the about text: "
-            + exception.toString());
+        LOGGER.logError("An logError occurred while reading the about text: %s",
+            exception.toString());
       }
     }
     return message;

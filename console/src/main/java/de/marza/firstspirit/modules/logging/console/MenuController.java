@@ -6,6 +6,7 @@ import de.marza.firstspirit.modules.logging.console.utilities.ReadTextFromFile;
 
 import java.awt.event.ActionEvent;
 import java.net.URI;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,6 +20,10 @@ public class MenuController implements Runnable {
   private static final ClipboardAccess CLIPBOARD_ACCESS = new ClipboardAccess();
   private static final ReadTextFromFile ABOUT_TEXT = new ReadTextFromFile("/about.txt");
   private final ActionEvent event;
+  private final JFrame parent;
+  private final ConsoleWindow consoleWindow;
+  private final MessageConsole console;
+  private final ResourceBundle menuLabels;
 
   /**
    * Instantiates a new Menu controller.
@@ -27,13 +32,17 @@ public class MenuController implements Runnable {
    */
   public MenuController(final ActionEvent event) {
     this.event = event;
+    consoleWindow = ConsoleWindow.getInstance();
+    parent = consoleWindow.getFrame(null);
+    menuLabels = consoleWindow.getMenuLabels();
+    console = consoleWindow.getConsole();
   }
 
   @Override
   public void run() {
-    final ConsoleWindow consoleWindow = ConsoleWindow.getInstance();
-    final JFrame parent = consoleWindow.getFrame(null);
+
     final MenuActions menuAction = MenuActions.valueOf(event.getActionCommand());
+
     switch (menuAction) {
       case CLOSE:
         parent.setVisible(false);
@@ -48,7 +57,7 @@ public class MenuController implements Runnable {
         parent.repaint();
         break;
       case SHOW_INFO:
-        final String title = consoleWindow.getMenuLabels().getString("aboutItem");
+        final String title = menuLabels.getString("aboutItem");
         JOptionPane.showMessageDialog(parent, ABOUT_TEXT.readAsJEditor(), title,
             JOptionPane.PLAIN_MESSAGE);
         break;
@@ -66,12 +75,13 @@ public class MenuController implements Runnable {
       case SHOW_LOG_LINES_2K:
       case SHOW_LOG_LINES_5K:
       case SHOW_LOG_LINES_10K:
-        consoleWindow.getConsole().setMaxMessageLines(menuAction.getLines());
+        final int maxLogLines = menuAction.getLines(); //NOPMD
+        console.setMaxMessageLines(maxLogLines);
         parent.repaint();
         break;
       default:
-        final String errorMessage = consoleWindow.getMenuLabels().getString("missingMenuAction");
-        final String errorTitle = consoleWindow.getMenuLabels().getString("unkownMenuCommand");
+        final String errorMessage = menuLabels.getString("missingMenuAction");
+        final String errorTitle = menuLabels.getString("unkownMenuCommand");
         JOptionPane.showMessageDialog(parent, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
     }
   }

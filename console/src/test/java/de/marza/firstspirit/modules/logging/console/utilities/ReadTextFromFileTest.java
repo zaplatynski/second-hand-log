@@ -50,7 +50,7 @@ public class ReadTextFromFileTest {
 
     testling.readAsJEditor();
 
-    assertThat("An error occurred while reading the about text: java.lang.NullPointerException" + EOL,
+    assertThat("An logError occurred while reading the about text: java.lang.NullPointerException" + EOL,
         is(rule.getLog()));
   }
 }

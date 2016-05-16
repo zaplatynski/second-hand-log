@@ -11,7 +11,8 @@ import javax.swing.text.Element;
  */
 public class RemoveLinesJob implements Runnable {
   private final DocumentEvent event;
-  private LimitLinesDocumentListener documentListener;
+  private int maximumLines;
+  private boolean isRemoveFromStart;
 
   /**
    * Instantiates a new Remove lines job.
@@ -21,7 +22,8 @@ public class RemoveLinesJob implements Runnable {
    */
   public RemoveLinesJob(final LimitLinesDocumentListener documentListener,
                         final DocumentEvent event) {
-    this.documentListener = documentListener;
+    maximumLines = documentListener.getMaximumLines();
+    isRemoveFromStart = documentListener.isRemoveFromStart();
     this.event = event;
   }
 
@@ -38,10 +40,11 @@ public class RemoveLinesJob implements Runnable {
     //  of line in the Document.
 
     final Document document = event.getDocument();
-    final Element root = document.getDefaultRootElement();
+    final Element root = document.getDefaultRootElement(); //NOPMD
 
-    while (root.getElementCount() > documentListener.getMaximumLines()) {
-      if (documentListener.isRemoveFromStart()) {
+
+    while (root.getElementCount() > maximumLines) { //NOPMD
+      if (isRemoveFromStart) {
         removeFromStart(document, root);
       } else {
         removeFromEnd(document, root);
@@ -54,12 +57,12 @@ public class RemoveLinesJob implements Runnable {
    */
   private void removeFromStart(final Document document, final Element root) {
     final Element line = root.getElement(0);
-    final int end = line.getEndOffset();
+    final int end = line.getEndOffset(); //NOPMD
 
     try {
       document.remove(0, end);
-    } catch (final BadLocationException ble) {
-      System.out.println(ble);
+    } catch (final BadLocationException ble) { //NOPMD
+      //ignore to avoid stack overflows
     }
   }
 
@@ -71,13 +74,13 @@ public class RemoveLinesJob implements Runnable {
     //  character of the previous line
 
     final Element line = root.getElement(root.getElementCount() - 1);
-    final int start = line.getStartOffset();
-    final int end = line.getEndOffset();
+    final int start = line.getStartOffset(); //NOPMD
+    final int end = line.getEndOffset(); //NOPMD
 
     try {
       document.remove(start - 1, end - start);
-    } catch (final BadLocationException ble) {
-      System.out.println(ble);
+    } catch (final BadLocationException ble) { //NOPMD
+      //ignore to avoid stack overflows
     }
   }
 }

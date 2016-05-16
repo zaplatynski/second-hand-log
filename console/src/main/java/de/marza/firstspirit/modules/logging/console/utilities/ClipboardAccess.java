@@ -13,6 +13,7 @@ import java.io.IOException;
  * The type Clipboard access.
  */
 public class ClipboardAccess {
+  private static final Logger LOGGER = Logger.getInstance();
   private final Clipboard clipboard;
 
   /**
@@ -40,9 +41,9 @@ public class ClipboardAccess {
   public String paste() {
     try {
       final Transferable contents = clipboard.getContents(LogClipboardOnwer.getInstance());
-      return (String) contents.getTransferData(DataFlavor.stringFlavor);
+      return (String) contents.getTransferData(DataFlavor.stringFlavor); //NOPMD
     } catch (UnsupportedFlavorException | IOException error) {
-      System.err.println("Error occurred while accessing clipboard: " + error.toString());
+      LOGGER.logError("Error occurred while accessing clipboard: %s", error.toString());
       return "";
     }
   }

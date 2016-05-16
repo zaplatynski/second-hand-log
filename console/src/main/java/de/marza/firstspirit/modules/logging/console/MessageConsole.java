@@ -74,7 +74,7 @@ public class MessageConsole {
   }
 
   /**
-   * Redirect the output from the standard error to the console using the default text color and
+   * Redirect the output from the standard logError to the console using the default text color and
    * null PrintStream.
    */
   public void redirectErr() {
@@ -84,7 +84,7 @@ public class MessageConsole {
   /**
    * Redirect err.
    *
-   * <p>Redirect the output from the standard error to the console using the specified color and
+   * <p>Redirect the output from the standard logError to the console using the specified color and
    * PrintStream. When a PrintStream is specified the message will be added to the Document before
    * it is also written to the PrintStream.</p>
    *

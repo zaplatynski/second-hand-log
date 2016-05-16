@@ -33,6 +33,9 @@ public class ConsoleWindow {
   private final ImageIcon icon;
   private final ImageIcon imageIconPressed;
   private final ResourceBundle menuLabels;
+  private final String defaultIso3Code;
+  private final String germanIso3Code;
+  private final Dimension screenSize;
   private JFrame window;
   private MessageConsole console;
   private JTextComponent textComponent;
@@ -41,6 +44,9 @@ public class ConsoleWindow {
     icon = new ImageIcon(this.getClass().getResource("/log-icon.png"));
     imageIconPressed = new ImageIcon(this.getClass().getResource("/log-icon_pressed.png"));
     menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules.logging.MenuLabels");
+    defaultIso3Code = Locale.getDefault().getISO3Language();
+    germanIso3Code = Locale.GERMAN.getISO3Language();
+    screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   }
 
   /**
@@ -53,8 +59,24 @@ public class ConsoleWindow {
     return SELF;
   }
 
-  private static boolean isGerman() {
-    return Locale.GERMAN.getISO3Language().equalsIgnoreCase(Locale.getDefault().getISO3Language());
+  private void createViewLogLinesSubMenu(final MenuActionListener menuActionLisener,
+                                         final JMenu edit) {
+    final JMenu viewLogLines = new JMenu(menuLabels.getString("viewMaxLines"));
+    edit.add(viewLogLines);
+    final ButtonGroup logLinesGroup = new ButtonGroup();
+    for (final MenuActions maxLogLines : MenuActions.logLines()) {
+      final JRadioButtonMenuItem submenuItem = new JRadioButtonMenuItem("Maximum "
+          + maxLogLines.getLines());
+      viewLogLines.add(submenuItem);
+      logLinesGroup.add(submenuItem);
+      submenuItem.setSelected(maxLogLines.getLines() == MAX_LOG_LINES);
+      submenuItem.addActionListener(menuActionLisener);
+      submenuItem.setActionCommand(maxLogLines.name());
+    }
+  }
+
+  private boolean isGerman() {
+    return germanIso3Code.equalsIgnoreCase(defaultIso3Code);
   }
 
   /**
@@ -87,8 +109,8 @@ public class ConsoleWindow {
     frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
     //Dynamic size
-    final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    frame.setPreferredSize(new Dimension(screenSize.width >> 1, screenSize.height >> 1));
+    final Dimension preferredSize = new Dimension(screenSize.width >> 1, screenSize.height >> 1);
+    frame.setPreferredSize(preferredSize);
 
     return frame;
   }
@@ -99,58 +121,25 @@ public class ConsoleWindow {
     final JMenuBar menubar = new JMenuBar();
     window.setJMenuBar(menubar);
 
+    createFileMenu(menuActionLisener, menubar);
+    createEditMenu(menuActionLisener, menubar);
+    createHelpMenu(menuActionLisener, menubar);
+  }
+
+  private void createFileMenu(final MenuActionListener menuActionLisener, final JMenuBar menubar) {
     final JMenu fileMenu = new JMenu(menuLabels.getString("fileMenu"));
     menubar.add(fileMenu);
     fileMenu.setMnemonic(isGerman() ? 'D' : 'F');
 
     final JMenuItem close = new JMenuItem(menuLabels.getString("closeItem"));
     fileMenu.add(close);
-    close.setActionCommand(MenuActions.CLOSE.name());
+    close.setActionCommand(MenuActions.CLOSE.name()); //NOPMD
     close.addActionListener(menuActionLisener);
     close.setMnemonic(isGerman() ? 'S' : 'C');
     close.setAccelerator(KeyStroke.getKeyStroke("alt F4"));
+  }
 
-    final JMenu edit = new JMenu(menuLabels.getString("editMenu"));
-    menubar.add(edit);
-    edit.setMnemonic(isGerman() ? 'B' : 'E');
-
-    final JMenuItem copy = new JMenuItem(menuLabels.getString("copyLog"));
-    edit.add(copy);
-    copy.setActionCommand(MenuActions.COPY_LOG.name());
-    copy.addActionListener(menuActionLisener);
-    copy.setMnemonic(isGerman() ? 'K' : 'C');
-    copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
-
-    final JMenuItem cut = new JMenuItem(menuLabels.getString("cutLog"));
-    edit.add(cut);
-    cut.setActionCommand(MenuActions.CUT_LOG.name());
-    cut.addActionListener(menuActionLisener);
-    cut.setMnemonic(isGerman() ? 'O' : 'U');
-    cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
-
-    final JMenuItem clear = new JMenuItem(menuLabels.getString("clearLog"));
-    edit.add(clear);
-    clear.setActionCommand(MenuActions.CLEAR_LOG.name());
-    clear.addActionListener(menuActionLisener);
-    clear.setMnemonic(isGerman() ? 'L' : 'C');
-    clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
-
-    edit.addSeparator();
-
-    final JMenu viewLogLines = new JMenu(menuLabels.getString("viewMaxLines"));
-    edit.add(viewLogLines);
-    final ButtonGroup logLinesGroup = new ButtonGroup();
-    for (final MenuActions maxLogLines : MenuActions.logLines()) {
-      final JRadioButtonMenuItem submenuItem = new JRadioButtonMenuItem("Maximum "
-          + maxLogLines.getLines());
-      viewLogLines.add(submenuItem);
-      logLinesGroup.add(submenuItem);
-      submenuItem.setSelected(maxLogLines.getLines() == MAX_LOG_LINES);
-      submenuItem.addActionListener(menuActionLisener);
-      submenuItem.setActionCommand(maxLogLines.name());
-    }
-
-
+  private void createHelpMenu(final MenuActionListener menuActionLisener, final JMenuBar menubar) {
     final JMenu helpMenu = new JMenu(menuLabels.getString("helpMenu"));
     menubar.add(helpMenu);
     helpMenu.setMnemonic('H');
@@ -158,13 +147,13 @@ public class ConsoleWindow {
     final JMenuItem contents = new JMenuItem(menuLabels.getString("contents"));
     helpMenu.add(contents);
     contents.addActionListener(menuActionLisener);
-    contents.setActionCommand(MenuActions.SHOW_HELP_CONTENTS.name());
+    contents.setActionCommand(MenuActions.SHOW_HELP_CONTENTS.name()); //NOPMD
     contents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
 
     final JMenuItem report = new JMenuItem(menuLabels.getString("reportIssue"));
     helpMenu.add(report);
     report.addActionListener(menuActionLisener);
-    report.setActionCommand(MenuActions.SHOW_BUGS_FEATURES.name());
+    report.setActionCommand(MenuActions.SHOW_BUGS_FEATURES.name()); //NOPMD
     report.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, InputEvent.CTRL_MASK));
 
     helpMenu.addSeparator();
@@ -172,10 +161,43 @@ public class ConsoleWindow {
     final JMenuItem about = new JMenuItem(menuLabels.getString("aboutItem"));
     helpMenu.add(about);
     about.addActionListener(menuActionLisener);
-    about.setActionCommand(MenuActions.SHOW_INFO.name());
+    about.setActionCommand(MenuActions.SHOW_INFO.name()); //NOPMD
     about.setMnemonic(isGerman() ? 'Ü' : 'A');
+  }
 
+  private void createEditMenu(final MenuActionListener menuActionLisener, final JMenuBar menubar) {
+    final JMenu edit = new JMenu(menuLabels.getString("editMenu"));
+    menubar.add(edit);
+    edit.setMnemonic(isGerman() ? 'B' : 'E');
 
+    createCopyAndCut(menuActionLisener, edit);
+
+    final JMenuItem clear = new JMenuItem(menuLabels.getString("clearLog"));
+    edit.add(clear);
+    clear.setActionCommand(MenuActions.CLEAR_LOG.name()); //NOPMD
+    clear.addActionListener(menuActionLisener);
+    clear.setMnemonic(isGerman() ? 'L' : 'C');
+    clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+
+    edit.addSeparator();
+
+    createViewLogLinesSubMenu(menuActionLisener, edit);
+  }
+
+  private void createCopyAndCut(final MenuActionListener menuActionLisener, final JMenu edit) {
+    final JMenuItem copy = new JMenuItem(menuLabels.getString("copyLog"));
+    edit.add(copy);
+    copy.setActionCommand(MenuActions.COPY_LOG.name()); //NOPMD
+    copy.addActionListener(menuActionLisener);
+    copy.setMnemonic(isGerman() ? 'K' : 'C');
+    copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK));
+
+    final JMenuItem cut = new JMenuItem(menuLabels.getString("cutLog"));
+    edit.add(cut);
+    cut.setActionCommand(MenuActions.CUT_LOG.name()); //NOPMD
+    cut.addActionListener(menuActionLisener);
+    cut.setMnemonic(isGerman() ? 'O' : 'U');
+    cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK));
   }
 
   @NotNull
