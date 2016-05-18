@@ -18,19 +18,21 @@ import javax.swing.Icon;
 public class LoggingViewToolbarItem implements ExecutableToolbarItem {
 
   private final ResourceBundle menuLabels;
+  private final ConsoleWindow consoleWindow;
 
   /**
    * Instantiates a new Logging view toolbar item.
    */
   public LoggingViewToolbarItem() {
-    this.menuLabels = ResourceBundle.getBundle(
-        "de.marza.firstspirit.modules.logging.MenuLabels");
+    menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules.logging.MenuLabels");
+    consoleWindow = ConsoleWindow.getInstance();
   }
 
   @Override
   public void execute(@NotNull final ToolbarContext context) {
     final ProjectAgent projectAgent = context.requireSpecialist(ProjectAgent.TYPE);
-    ConsoleWindow.getInstance().show(projectAgent.getName());
+    final String projectName = projectAgent.getName(); //NOPMD
+    consoleWindow.show(projectName);
   }
 
   @Override
@@ -50,16 +52,16 @@ public class LoggingViewToolbarItem implements ExecutableToolbarItem {
 
   @Override
   public Icon getIcon(@NotNull final ToolbarContext context) {
-    return ConsoleWindow.getInstance().getIcon();
+    return consoleWindow.getIcon();
   }
 
   @Override
   public Icon getPressedIcon(@NotNull final ToolbarContext context) {
-    return ConsoleWindow.getInstance().getImageIconPressed();
+    return consoleWindow.getImageIconPressed();
   }
 
   @Override
   public Icon getRollOverIcon(@NotNull final ToolbarContext context) {
-    return ConsoleWindow.getInstance().getIcon();
+    return consoleWindow.getIcon();
   }
 }

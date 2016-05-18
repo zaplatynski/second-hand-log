@@ -1,12 +1,18 @@
 package de.marza.firstspirit.modules.logging.console;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
 import java.awt.Color;
+import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
@@ -16,15 +22,15 @@ import javax.swing.text.StyleConstants;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(Parameterized.class)
 public class ConsoleOutputStreamTest {
 
-  public static final String EOL = System.lineSeparator();
-
+  private static final String EOL = System.lineSeparator();
+  private final boolean append;
+  @Rule
+  public MockitoRule rule = MockitoJUnit.rule();
   private ConsoleOutputStream testling;
-
   private SimpleAttributeSet attributes;
-
   @Mock
   private MessageConsole console;
 
@@ -34,42 +40,53 @@ public class ConsoleOutputStreamTest {
   @Mock
   private JTextComponent textComponent;
 
+  @Mock
+  private PrintStream printStream;
+
+  public ConsoleOutputStreamTest(final boolean append) {
+    this.append = append;
+  }
+
+  @Parameterized.Parameters(name = "append={0}")
+  public static Collection<Object[]> data() {
+    return Arrays.asList(new Boolean[]{Boolean.TRUE}, new Boolean[]{Boolean.FALSE});
+
+  }
+
   @Before
   public void setUp() throws Exception {
-    when(console.isAppend()).thenReturn(true);
+    when(console.isAppend()).thenReturn(append);
     when(console.getTextComponent()).thenReturn(textComponent);
     when(textComponent.getDocument()).thenReturn(document);
 
-    testling = new ConsoleOutputStream(console, Color.BLACK, null);
+    testling = new ConsoleOutputStream(console, Color.BLACK, printStream);
 
     attributes = new SimpleAttributeSet();
     StyleConstants.setForeground(attributes, Color.BLACK);
+
+
   }
 
   @Test
-  public void flushAppend() throws Exception {
-    when(console.isAppend()).thenReturn(true);
+  public void flush() throws Exception {
 
-    testling.write(("Test 123" + EOL).getBytes());
+    if (append) {
+      testling.write(("Test 123" + EOL).getBytes());
+      testling.flush();
+    } else {
+      testling.write("Test 123".getBytes());
+      testling.flush();
 
-    testling.flush();
+      testling.write(EOL.getBytes());
+      testling.flush();
 
-    verify(document).insertString(0, "Test 123" + EOL, attributes);
-  }
-
-  @Test
-  public void flushInsert() throws Exception {
-    when(console.isAppend()).thenReturn(false);
-
-    testling.write("Test 123".getBytes());
-
-    testling.flush();
-
-    testling.write(EOL.getBytes());
-
-    testling.flush();
+      testling.write("".getBytes());
+      testling.flush();
+    }
 
     verify(document).insertString(0, "Test 123" + EOL, attributes);
+
+    verify(printStream).print("Test 123" + EOL);
   }
 
 }

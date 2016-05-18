@@ -73,7 +73,8 @@ public class RemoveLinesJob implements Runnable {
     //  We use start minus 1 to make sure we remove the newline
     //  character of the previous line
 
-    final Element line = root.getElement(root.getElementCount() - 1);
+    final int index = root.getElementCount() - 1;
+    final Element line = root.getElement(index);
     final int start = line.getStartOffset(); //NOPMD
     final int end = line.getEndOffset(); //NOPMD
 
