@@ -14,8 +14,4 @@
     <name>${display.name} Console</name>
     <packaging>jar</packaging>
 
-    <build>
-        <finalName>${jar.finalName}</finalName>
-    </build>
-
 </project>

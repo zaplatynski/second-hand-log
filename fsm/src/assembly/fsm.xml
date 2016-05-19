@@ -26,9 +26,6 @@
                 <include>${project.groupId}:toolbar</include>
             </includes>
             <useTransitiveFiltering>true</useTransitiveFiltering>
-            <outputFileNameMapping>
-                ${project.groupId}-${project.artifactId}-${project.version}
-            </outputFileNameMapping>
         </dependencySet>
     </dependencySets>
 </assembly>
