@@ -12,8 +12,8 @@ import javax.swing.event.DocumentListener;
  */
 public class LimitLinesDocumentListener implements DocumentListener {
 
-  private int maximumLines;
-  private boolean removeFromStart;
+  private final boolean removeFromStart;
+  private final int maximumLines;
 
   /**
    * Specify the number of lines to be stored in the Document. Extra lines will be removed from the
@@ -23,7 +23,11 @@ public class LimitLinesDocumentListener implements DocumentListener {
    * @param removeFromStart the is remove from start
    */
   public LimitLinesDocumentListener(final int maximumLines, final boolean removeFromStart) {
-    setMaxiumLines(maximumLines);
+    if (maximumLines < 1) {
+      final String message = "Maximum lines must be greater than 0";
+      throw new IllegalArgumentException(message);
+    }
+    this.maximumLines = maximumLines;
     this.removeFromStart = removeFromStart;
   }
 
@@ -36,34 +40,21 @@ public class LimitLinesDocumentListener implements DocumentListener {
     return maximumLines;
   }
 
-  /**
-   * Set the maximum number of lines to be stored in the Document.
-   *
-   * @param maximumLines the maximum lines
-   */
-  public void setMaxiumLines(final int maximumLines) {
-    if (maximumLines < 1) {
-      final String message = "Maximum lines must be greater than 0";
-      throw new IllegalArgumentException(message);
-    }
-
-    this.maximumLines = maximumLines;
-  }
-
   @Override
   public void insertUpdate(final DocumentEvent event) {
     //  Changes to the Document can not be done within the listener
     //  so we need to add the processing to the end of the EDT
-
     SwingUtilities.invokeLater(new RemoveLinesJob(this, event));
   }
 
   @Override
   public void removeUpdate(final DocumentEvent event) {
+    //not needed
   }
 
   @Override
   public void changedUpdate(final DocumentEvent event) {
+    //not needed
   }
 
   /**

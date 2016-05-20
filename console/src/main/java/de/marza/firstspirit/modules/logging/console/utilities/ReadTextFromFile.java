@@ -51,7 +51,7 @@ public class ReadTextFromFile {
         final Color backgrounfdColor = UIManager.getColor("Panel.background");
         message.setBackground(backgrounfdColor);
         message.addHyperlinkListener(new HyperlinkExecutor());
-      } catch (final IOException | NullPointerException exception) {
+      } catch (final IOException exception) {
         LOGGER.logError("An logError occurred while reading the about text: %s",
             exception.toString());
       }

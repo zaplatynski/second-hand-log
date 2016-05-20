@@ -43,7 +43,7 @@ public class MenuController implements Runnable {
 
     final MenuActions menuAction = MenuActions.valueOf(event.getActionCommand());
 
-    switch (menuAction) {
+    switch (menuAction) { //NOPMD
       case CLOSE:
         parent.setVisible(false);
         break;

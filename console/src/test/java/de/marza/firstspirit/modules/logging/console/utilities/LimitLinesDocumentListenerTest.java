@@ -22,7 +22,7 @@ public class LimitLinesDocumentListenerTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testSetMaxiumLines() throws Exception {
-    testling.setMaxiumLines(0);
+    testling = new LimitLinesDocumentListener(0, true);
   }
 
   /**

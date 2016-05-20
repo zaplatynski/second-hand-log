@@ -9,9 +9,9 @@ import java.util.Locale;
 /**
  * The type Logger.
  */
-public class Logger {
+public final class Logger {
 
-  private static final Logger SELF = new Logger(System.out, System.err);
+  private static final Logger LOG = new Logger(System.out, System.err);
   private final PrintStream info;
   private final PrintStream error;
 
@@ -33,7 +33,7 @@ public class Logger {
   }
 
   public static Logger getInstance() {
-    return SELF;
+    return LOG;
   }
 
   /**

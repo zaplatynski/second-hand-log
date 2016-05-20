@@ -11,8 +11,8 @@ import javax.swing.text.Element;
  */
 public class RemoveLinesJob implements Runnable {
   private final DocumentEvent event;
-  private int maximumLines;
-  private boolean isRemoveFromStart;
+  private final int maximumLines;
+  private final boolean isRemoveFromStart;
 
   /**
    * Instantiates a new Remove lines job.

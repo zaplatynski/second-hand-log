@@ -26,7 +26,7 @@ import javax.swing.text.JTextComponent;
 /**
  * The type Console window.
  */
-public class ConsoleWindow {
+public final class ConsoleWindow {
 
   private static final ConsoleWindow SELF = new ConsoleWindow();
   private static final int MAX_LOG_LINES = MenuActions.SHOW_LOG_LINES_1K.getLines();
@@ -103,8 +103,8 @@ public class ConsoleWindow {
 
   @NotNull
   private JFrame setupFrame(final String projectName) {
-    final JFrame frame = new JFrame(menuLabels.getString("appName")
-        + (projectName != null ? " / " + projectName : ""));
+    final String appName = createAppName(projectName);
+    final JFrame frame = new JFrame(appName);
     frame.setIconImage(icon.getImage());
     frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
@@ -113,6 +113,15 @@ public class ConsoleWindow {
     frame.setPreferredSize(preferredSize);
 
     return frame;
+  }
+
+  @NotNull
+  private String createAppName(final String projectName) {
+    String appName = menuLabels.getString("appName");
+    if (projectName != null) {
+      appName += " / " + projectName;
+    }
+    return appName;
   }
 
   private void setupMenu() {
@@ -216,7 +225,9 @@ public class ConsoleWindow {
   }
 
   /**
-   * Show.
+   * Show window.
+   *
+   * @param projectName the project name
    */
   public void show(final String projectName) {
     getFrame(projectName);

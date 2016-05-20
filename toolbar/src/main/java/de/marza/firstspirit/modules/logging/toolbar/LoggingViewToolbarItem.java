@@ -24,8 +24,8 @@ public class LoggingViewToolbarItem implements ExecutableToolbarItem {
    * Instantiates a new Logging view toolbar item.
    */
   public LoggingViewToolbarItem() {
-    menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules.logging.MenuLabels");
     consoleWindow = ConsoleWindow.getInstance();
+    menuLabels = consoleWindow.getMenuLabels();
   }
 
   @Override
