@@ -27,6 +27,39 @@ public class RemoveLinesJob implements Runnable {
     this.event = event;
   }
 
+  /**
+   * Remove lines from the start of the Document.
+   */
+  private static void removeFromStart(final Document document, final Element root) {
+    final Element line = root.getElement(0);
+    final int end = line.getEndOffset(); //NOPMD
+
+    try {
+      document.remove(0, end);
+    } catch (final BadLocationException ble) { //NOPMD
+      //ignore to avoid stack overflows
+    }
+  }
+
+  /**
+   * Remove lines from the end of the Document.
+   */
+  private static void removeFromEnd(final Document document, final Element root) {
+    //  We use start minus 1 to make sure we remove the newline
+    //  character of the previous line
+
+    final int index = root.getElementCount() - 1;
+    final Element line = root.getElement(index);
+    final int start = line.getStartOffset(); //NOPMD
+    final int end = line.getEndOffset(); //NOPMD
+
+    try {
+      document.remove(start - 1, end - start);
+    } catch (final BadLocationException ble) { //NOPMD
+      //ignore to avoid stack overflows
+    }
+  }
+
   @Override
   public void run() {
     removeLines(event);
@@ -49,39 +82,6 @@ public class RemoveLinesJob implements Runnable {
       } else {
         removeFromEnd(document, root);
       }
-    }
-  }
-
-  /**
-   * Remove lines from the start of the Document.
-   */
-  private void removeFromStart(final Document document, final Element root) {
-    final Element line = root.getElement(0);
-    final int end = line.getEndOffset(); //NOPMD
-
-    try {
-      document.remove(0, end);
-    } catch (final BadLocationException ble) { //NOPMD
-      //ignore to avoid stack overflows
-    }
-  }
-
-  /**
-   * Remove lines from the end of the Document.
-   */
-  private void removeFromEnd(final Document document, final Element root) {
-    //  We use start minus 1 to make sure we remove the newline
-    //  character of the previous line
-
-    final int index = root.getElementCount() - 1;
-    final Element line = root.getElement(index);
-    final int start = line.getStartOffset(); //NOPMD
-    final int end = line.getEndOffset(); //NOPMD
-
-    try {
-      document.remove(start - 1, end - start);
-    } catch (final BadLocationException ble) { //NOPMD
-      //ignore to avoid stack overflows
     }
   }
 }

@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 
 
+/**
+ * The type Menu action listener.
+ */
 public class MenuActionListener implements ActionListener {
 
   @Override
