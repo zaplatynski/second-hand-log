@@ -7,10 +7,18 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 
+/**
+ * The type Limit lines document listener test.
+ */
 public class LimitLinesDocumentListenerTest {
 
   private LimitLinesDocumentListener testling;
 
+  /**
+   * Before.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void before() throws Exception {
     testling = new LimitLinesDocumentListener(10, true);
@@ -19,6 +27,8 @@ public class LimitLinesDocumentListenerTest {
 
   /**
    * Method: setMaxiumLines(final int maximumLines)
+   *
+   * @throws Exception the exception
    */
   @Test(expected = IllegalArgumentException.class)
   public void testSetMaxiumLines() throws Exception {
@@ -27,6 +37,8 @@ public class LimitLinesDocumentListenerTest {
 
   /**
    * Method: isRemoveFromStart()
+   *
+   * @throws Exception the exception
    */
   @Test
   public void testIsRemoveFromStart() throws Exception {
@@ -37,6 +49,11 @@ public class LimitLinesDocumentListenerTest {
     assertThat(testling.isRemoveFromStart(), is(false));
   }
 
+  /**
+   * Test get maximum lines.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testGetMaximumLines() throws Exception {
     assertThat(testling.getMaximumLines(), is(10));

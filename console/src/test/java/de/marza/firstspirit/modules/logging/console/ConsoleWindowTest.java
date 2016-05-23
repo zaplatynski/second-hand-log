@@ -53,6 +53,12 @@ public class ConsoleWindowTest {
     }
   }
 
+  /**
+   * Test window title with custom part.
+   *
+   * @param <T> the type parameter
+   * @throws Exception the exception
+   */
   @Test
   public <T> void testWindowTitleWithCustomPart() throws Exception {
     assumeThat(GraphicsEnvironment.isHeadless(), is(false));

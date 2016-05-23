@@ -22,33 +22,61 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Remove lines job test.
+ */
 @RunWith(Parameterized.class)
 public class RemoveLinesJobTest {
 
   private final Boolean removeFromStart;
+
+  /**
+   * The Rule.
+   */
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
+
   private RemoveLinesJob testling;
+
   @Mock
   private DocumentEvent documentEvent;
+
   @Mock
   private LimitLinesDocumentListener documentListener;
+
   @Mock
   private Document document;
+
   @Mock
   private Element rootElement;
+
   @Mock
   private Element line;
 
+  /**
+   * Instantiates a new Remove lines job test.
+   *
+   * @param removeFromStart the remove from start
+   */
   public RemoveLinesJobTest(final Boolean removeFromStart) {
     this.removeFromStart = removeFromStart;
   }
 
+  /**
+   * Data collection.
+   *
+   * @return the collection
+   */
   @Parameterized.Parameters(name = "removeFromStart={0}")
   public static Collection<Object[]> data() {
     return Arrays.asList(new Boolean[]{Boolean.TRUE}, new Boolean[]{Boolean.FALSE});
   }
 
+  /**
+   * Sets up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     when(documentEvent.getDocument()).thenReturn(document);
@@ -58,12 +86,22 @@ public class RemoveLinesJobTest {
     testling = new RemoveLinesJob(documentListener, documentEvent);
   }
 
+  /**
+   * Run do nothing.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void runDoNothing() throws Exception {
     when(rootElement.getElementCount()).thenReturn(10);
     testling.run();
   }
 
+  /**
+   * Run do remove form start.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void runDoRemoveFormStart() throws Exception {
     assumeTrue(removeFromStart);
@@ -73,6 +111,11 @@ public class RemoveLinesJobTest {
     verify(document).remove(0, 0);
   }
 
+  /**
+   * Run do remove form end.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void runDoRemoveFormEnd() throws Exception {
     assumeFalse(removeFromStart);

@@ -22,11 +22,17 @@ import javax.swing.text.StyleConstants;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Console output stream test.
+ */
 @RunWith(Parameterized.class)
 public class ConsoleOutputStreamTest {
 
   private static final String EOL = System.lineSeparator();
   private final boolean append;
+  /**
+   * The Rule.
+   */
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
   private ConsoleOutputStream testling;
@@ -43,16 +49,31 @@ public class ConsoleOutputStreamTest {
   @Mock
   private PrintStream printStream;
 
+  /**
+   * Instantiates a new Console output stream test.
+   *
+   * @param append the append
+   */
   public ConsoleOutputStreamTest(final boolean append) {
     this.append = append;
   }
 
+  /**
+   * Data collection.
+   *
+   * @return the collection
+   */
   @Parameterized.Parameters(name = "append={0}")
   public static Collection<Object[]> data() {
     return Arrays.asList(new Boolean[]{Boolean.TRUE}, new Boolean[]{Boolean.FALSE});
 
   }
 
+  /**
+   * Sets up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     when(console.isAppend()).thenReturn(append);
@@ -67,6 +88,11 @@ public class ConsoleOutputStreamTest {
 
   }
 
+  /**
+   * Flush.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void flush() throws Exception {
 

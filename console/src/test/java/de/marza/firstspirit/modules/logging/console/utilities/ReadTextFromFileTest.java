@@ -11,19 +11,38 @@ import javax.swing.JEditorPane;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * The type Read text from file test.
+ */
 public class ReadTextFromFileTest {
 
+  /**
+   * The constant EOL.
+   */
   public static final String EOL = System.lineSeparator();
+  /**
+   * The Rule.
+   */
   @Rule
   public SystemErrRule rule = new SystemErrRule();
 
   private ReadTextFromFile testling;
 
+  /**
+   * Sets up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     testling = new ReadTextFromFile("/test.txt");
   }
 
+  /**
+   * Read as j editor.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void readAsJEditor() throws Exception {
     final JEditorPane editorPane = testling.readAsJEditor();
@@ -35,11 +54,21 @@ public class ReadTextFromFileTest {
     assertThat(editorPane.getText(), is(expectedText));
   }
 
+  /**
+   * Test null argument constructor.
+   *
+   * @throws Exception the exception
+   */
   @Test(expected = IllegalArgumentException.class)
   public void testNullArgumentConstructor() throws Exception {
     new ReadTextFromFile(null);
   }
 
+  /**
+   * Test file not found.
+   *
+   * @throws Exception the exception
+   */
   @Test
   @Ignore
   public void testFileNotFound() throws Exception {

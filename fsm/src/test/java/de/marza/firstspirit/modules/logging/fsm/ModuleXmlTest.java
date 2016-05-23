@@ -26,14 +26,25 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 
+/**
+ * The type Module xml test.
+ */
 public class ModuleXmlTest {
 
   private static Node moduleXML;
   private static Properties pomProperties;
 
+  /**
+   * The Errors.
+   */
   @Rule
   public ErrorCollector errors = new ErrorCollector();
 
+  /**
+   * Sets up before.
+   *
+   * @throws Exception the exception
+   */
   @BeforeClass
   public static void setUpBefore() throws Exception {
     final File file = new File(ClassLoader.getSystemClassLoader().getResource("module.xml").toURI());
@@ -52,6 +63,11 @@ public class ModuleXmlTest {
         .getDocumentElement();
   }
 
+  /**
+   * Test if version is equal to pom version.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testIfVersionIsEqualToPomVersion() throws Exception {
     final String expectedVersion = pomProperties.getProperty("version");
@@ -59,24 +75,44 @@ public class ModuleXmlTest {
   }
 
 
+  /**
+   * Test if display name is equal to pom name.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testIfDisplayNameIsEqualToPomName() throws Exception {
     final String expectedName = pomProperties.getProperty("displayName");
     assertThat("Expect a specific value", moduleXML, hasXPath("/module/displayname", equalTo(expectedName)));
   }
 
+  /**
+   * Test if name is equal tobasicworkflows.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testIfNameIsEqualTobasicworkflows() throws Exception {
     final String expectedName = pomProperties.getProperty("name");
     assertThat("Expect a specific value", moduleXML, hasXPath("/module/name", equalTo(expectedName)));
   }
 
+  /**
+   * Test if vendor is equal to pom dev.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testIfVendorIsEqualToPomDev() throws Exception {
     final String expectedVendor = pomProperties.getProperty("vendor");
     assertThat("Expect a specific path", moduleXML, hasXPath("/module/vendor", equalTo(expectedVendor)));
   }
 
+  /**
+   * Test if description is equal to artifact id.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testIfDescriptionIsEqualToArtifactId() throws Exception {
     final String expectedDescription = pomProperties.getProperty("description");

@@ -20,14 +20,25 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertTrue;
 
 
+/**
+ * The type Fsm it.
+ */
 public class FsmIT {
 
   private static final String MODULE_DESCRIPTOR = "META-INF/module.xml";
   private static Properties pomProperties;
 
+  /**
+   * The Errors.
+   */
   @Rule
   public ErrorCollector errors = new ErrorCollector();
 
+  /**
+   * Sets up before.
+   *
+   * @throws Exception the exception
+   */
   @BeforeClass
   public static void setUpBefore() throws Exception {
     pomProperties = new Properties();
@@ -38,6 +49,8 @@ public class FsmIT {
 
   /**
    * Check if FSM is valid
+   *
+   * @throws Exception the exception
    */
   @Test
   public void testisFSMValid() throws Exception {

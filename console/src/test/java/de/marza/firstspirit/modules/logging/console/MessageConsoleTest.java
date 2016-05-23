@@ -17,6 +17,9 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * The type Message console test.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class MessageConsoleTest {
 
@@ -28,6 +31,11 @@ public class MessageConsoleTest {
   @Mock
   private Document document;
 
+  /**
+   * Sets up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
 
@@ -39,16 +47,31 @@ public class MessageConsoleTest {
     verify(textComponent).setBackground(Color.WHITE);
   }
 
+  /**
+   * Gets document.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void getDocument() throws Exception {
     assertThat(testling.getDocument(), is(sameInstance(document)));
   }
 
+  /**
+   * Is append.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void isAppend() throws Exception {
     assertThat(testling.isAppend(), is(true));
   }
 
+  /**
+   * Gets text component.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void getTextComponent() throws Exception {
     assertThat(testling.getTextComponent(), is(sameInstance(textComponent)));
