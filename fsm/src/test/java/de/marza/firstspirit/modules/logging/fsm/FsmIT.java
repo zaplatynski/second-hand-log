@@ -48,14 +48,15 @@ public class FsmIT {
   }
 
   /**
-   * Check if FSM is valid
+   * Check if FSM is valid.
    *
    * @throws Exception the exception
    */
   @Test
   public void testisFSMValid() throws Exception {
     final File directory = new File("target");
-    final Collection<File> files = FileUtils.listFiles(directory, new WildcardFileFilter("*.fsm"), null);
+    final Collection<File> files = FileUtils.listFiles(directory, new WildcardFileFilter("*.fsm"),
+        null);
     final Iterator<File> iterator = files.iterator();
     assertTrue("FSM doesn't contain any files", iterator.hasNext());
     if (iterator.hasNext()) {

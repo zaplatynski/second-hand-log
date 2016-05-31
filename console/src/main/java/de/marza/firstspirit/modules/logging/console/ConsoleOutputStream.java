@@ -15,7 +15,7 @@ import javax.swing.text.StyleConstants;
  * <p>The output can optionally be redirected to a different PrintStream. The text displayed in
  * the Document can be color coded to indicate the output source.</p>
  */
-public class ConsoleOutputStream extends ByteArrayOutputStream {
+public final class ConsoleOutputStream extends ByteArrayOutputStream {
 
   private final String endOfLine;
   private final StringBuilder buffer; //NOPMD
@@ -118,7 +118,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     //  we need to insert a newline character for the first line only
 
     if (firstLine && document.getLength() != 0) {
-      buffer.insert(0, "\n");
+      buffer.insert(0, '\n');
     }
 
     firstLine = false;

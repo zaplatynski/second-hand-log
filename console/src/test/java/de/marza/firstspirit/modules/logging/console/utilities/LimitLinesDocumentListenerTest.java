@@ -26,7 +26,7 @@ public class LimitLinesDocumentListenerTest {
 
 
   /**
-   * Method: setMaxiumLines(final int maximumLines)
+   * Method: setMaxiumLines(final int maximumLines).
    *
    * @throws Exception the exception
    */
@@ -36,7 +36,7 @@ public class LimitLinesDocumentListenerTest {
   }
 
   /**
-   * Method: isRemoveFromStart()
+   * Method: isRemoveFromStart().
    *
    * @throws Exception the exception
    */

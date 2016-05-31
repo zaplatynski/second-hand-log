@@ -130,7 +130,6 @@ public class ModuleXmlTest {
     final NodeList nodes = (NodeList) xPath.evaluate("//class", moduleXML, XPathConstants.NODESET);
     assumeThat(nodes, is(notNullValue()));
     System.out.println("Number of classes: " + nodes.getLength());
-    final boolean hasErrors = false;
     for (int i = 0; i < nodes.getLength(); ++i) {
       final Node clazz = nodes.item(i);
       System.out.println("Check if '" + clazz.getTextContent() + "' is existent ...");

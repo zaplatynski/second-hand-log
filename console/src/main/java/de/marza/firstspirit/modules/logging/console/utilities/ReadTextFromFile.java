@@ -42,7 +42,7 @@ public class ReadTextFromFile {
       final InputStreamReader streamReader = new InputStreamReader(inputStream);
       try (final BufferedReader txtReader = new BufferedReader(streamReader)) {
         String line;
-        final StringBuilder buffer = new StringBuilder();
+        final StringBuilder buffer = new StringBuilder(12);
         while ((line = txtReader.readLine()) != null) {
           buffer.append(line);
         }

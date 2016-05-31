@@ -55,7 +55,7 @@ public final class Logger {
   public void logInfo(final Locale locale, final String format, final Object... args) {
     try {
       info.printf(locale, format, args);
-    } catch (final IllegalFormatException e) { //NOPMD
+    } catch (final IllegalFormatException error) { //NOPMD
       //ignore to avoid stack overflows
     }
   }
@@ -69,7 +69,7 @@ public final class Logger {
   public void logInfo(final String format, final Object... args) {
     try {
       info.printf(format, args);
-    } catch (final IllegalFormatException e) { //NOPMD
+    } catch (final IllegalFormatException error) { //NOPMD
       //ignore to avoid stack overflows
     }
   }
@@ -93,7 +93,7 @@ public final class Logger {
   public void logError(final Locale locale, final String format, final Object... args) {
     try {
       error.printf(locale, format, args);
-    } catch (final IllegalFormatException e) { //NOPMD
+    } catch (final IllegalFormatException error) { //NOPMD
       //signore to avoid stack overflows
     }
   }
@@ -107,7 +107,7 @@ public final class Logger {
   public void logError(final String format, final Object... args) {
     try {
       error.printf(format, args);
-    } catch (final IllegalFormatException e) { //NOPMD
+    } catch (final IllegalFormatException error) { //NOPMD
       //ignore to avoid stack overflows
     }
   }

@@ -10,7 +10,7 @@ import java.awt.datatransfer.Transferable;
  */
 public class LogClipboardOnwer implements ClipboardOwner {
 
-  private static LogClipboardOnwer self = new LogClipboardOnwer();
+  private static final LogClipboardOnwer SELF = new LogClipboardOnwer();
 
   /**
    * Gets instance.
@@ -18,7 +18,7 @@ public class LogClipboardOnwer implements ClipboardOwner {
    * @return the instance
    */
   public static ClipboardOwner getInstance() {
-    return self;
+    return SELF;
   }
 
   @Override

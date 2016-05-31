@@ -27,7 +27,7 @@ public class LoggingViewToolbarItemsPlugin implements JavaClientEditorialToolbar
    * Constructor.
    */
   public LoggingViewToolbarItemsPlugin() {
-    this.items = new ArrayList<ExecutableToolbarItem>();
+    this.items = new ArrayList<>();
   }
 
   @Override

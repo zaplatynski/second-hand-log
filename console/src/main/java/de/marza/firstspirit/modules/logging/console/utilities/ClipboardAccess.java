@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * The type Clipboard access.
  */
-public class ClipboardAccess {
+public final class ClipboardAccess {
   private static final Logger LOGGER = Logger.getInstance();
   private final Clipboard clipboard;
 

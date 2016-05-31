@@ -5,7 +5,7 @@ import de.marza.firstspirit.modules.logging.console.utilities.Logger;
 import org.junit.Test;
 
 import java.awt.GraphicsEnvironment;
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -20,8 +20,9 @@ import static org.junit.Assume.assumeThat;
  */
 public class ConsoleWindowTest {
 
-  private ResourceBundle menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules" +
-      ".logging.MenuLabels");
+  private static final Logger LOGGER = Logger.getInstance();
+  private ResourceBundle menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules"
+      + ".logging.MenuLabels");
 
   /**
    * Main.
@@ -40,12 +41,12 @@ public class ConsoleWindowTest {
   }
 
   private static void simulateLogEvents(final JFrame frame) throws InterruptedException {
-    final Logger logger = Logger.getInstance();
-    final Random random = new Random();
+
+    final SecureRandom random = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
-      logger.logInfo(i + ". test message");
+      LOGGER.logInfo(i + ". test message");
       Thread.currentThread().sleep(75 * random.nextInt(1));
-      logger.logError(++i + ". logError");
+      LOGGER.logError(++i + ". logError");
       Thread.currentThread().sleep(500 * random.nextInt(2));
       if (!frame.isVisible()) {
         System.exit(0);
