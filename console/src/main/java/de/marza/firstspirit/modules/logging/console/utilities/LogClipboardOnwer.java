@@ -8,9 +8,13 @@ import java.awt.datatransfer.Transferable;
 /**
  * The type Log clipboard onwer.
  */
-public class LogClipboardOnwer implements ClipboardOwner {
+public final class LogClipboardOnwer implements ClipboardOwner {
 
   private static final LogClipboardOnwer SELF = new LogClipboardOnwer();
+
+  private LogClipboardOnwer() {
+    //empty
+  }
 
   /**
    * Gets instance.

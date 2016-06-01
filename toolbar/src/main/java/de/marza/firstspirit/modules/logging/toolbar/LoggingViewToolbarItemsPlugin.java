@@ -16,7 +16,7 @@ import java.util.List;
  * Provide JavaClient toolbar items. These will be displayed in the toolbar section above the client
  * window's workspace area.
  */
-public class LoggingViewToolbarItemsPlugin implements JavaClientEditorialToolbarItemsPlugin {
+public final class LoggingViewToolbarItemsPlugin implements JavaClientEditorialToolbarItemsPlugin {
 
   /**
    * List of toolbar items.

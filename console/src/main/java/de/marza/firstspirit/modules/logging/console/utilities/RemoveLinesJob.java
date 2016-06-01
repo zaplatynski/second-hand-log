@@ -61,14 +61,7 @@ public class RemoveLinesJob implements Runnable {
   }
 
   @Override
-  public void run() {
-    removeLines(event);
-  }
-
-  /**
-   * Remove lines from the Document when necessary.
-   */
-  private void removeLines(final DocumentEvent event) {
+  public final void run() {
     //  The root Element of the Document will tell us the total number
     //  of line in the Document.
 
@@ -84,4 +77,5 @@ public class RemoveLinesJob implements Runnable {
       }
     }
   }
+
 }

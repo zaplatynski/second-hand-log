@@ -9,7 +9,11 @@ import javax.swing.SwingUtilities;
 /**
  * The type Menu action listener.
  */
-public class MenuActionListener implements ActionListener {
+public final class MenuActionListener implements ActionListener {
+
+  public MenuActionListener() {
+    //empty
+  }
 
   @Override
   public void actionPerformed(final ActionEvent event) {

@@ -39,7 +39,7 @@ public class MenuController implements Runnable {
   }
 
   @Override
-  public void run() {
+  public final void run() {
 
     final MenuActions menuAction = MenuActions.valueOf(event.getActionCommand());
 

@@ -15,7 +15,7 @@ import javax.swing.text.StyleConstants;
  * <p>The output can optionally be redirected to a different PrintStream. The text displayed in
  * the Document can be color coded to indicate the output source.</p>
  */
-public final class ConsoleOutputStream extends ByteArrayOutputStream {
+public class ConsoleOutputStream extends ByteArrayOutputStream {
 
   private final String endOfLine;
   private final StringBuilder buffer; //NOPMD
@@ -23,7 +23,7 @@ public final class ConsoleOutputStream extends ByteArrayOutputStream {
   private final JTextComponent textComponent;
   private final boolean append;
   private final PrintStream printStream;
-  private SimpleAttributeSet attributes;
+  private final SimpleAttributeSet attributes;
   private boolean firstLine;
 
   /**
@@ -40,16 +40,12 @@ public final class ConsoleOutputStream extends ByteArrayOutputStream {
     textComponent = messageConsole.getTextComponent();
     document = textComponent.getDocument();
     append = messageConsole.isAppend();
+    firstLine = append;
+    attributes = new SimpleAttributeSet();
     if (textColor != null) {
-      attributes = new SimpleAttributeSet();
       StyleConstants.setForeground(attributes, textColor);
     }
-
     this.printStream = printStream;
-
-    if (messageConsole.isAppend()) {
-      firstLine = true;
-    }
   }
 
   /**
@@ -125,13 +121,15 @@ public final class ConsoleOutputStream extends ByteArrayOutputStream {
     final String line = buffer.toString();
 
     try {
+      final SimpleAttributeSet textStyle = this.attributes;
+
       if (append) {
         final int offset = document.getLength();
-        document.insertString(offset, line, attributes);
+        document.insertString(offset, line, textStyle);
         final int newLength = document.getLength();
         textComponent.setCaretPosition(newLength);
       } else {
-        document.insertString(0, line, attributes);
+        document.insertString(0, line, textStyle);
         textComponent.setCaretPosition(0);
       }
     } catch (final BadLocationException ble) { //NOPMD

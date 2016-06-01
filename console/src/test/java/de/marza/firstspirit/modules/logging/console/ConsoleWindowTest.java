@@ -1,7 +1,5 @@
 package de.marza.firstspirit.modules.logging.console;
 
-import de.marza.firstspirit.modules.logging.console.utilities.Logger;
-
 import org.junit.Test;
 
 import java.awt.GraphicsEnvironment;
@@ -20,7 +18,6 @@ import static org.junit.Assume.assumeThat;
  */
 public class ConsoleWindowTest {
 
-  private static final Logger LOGGER = Logger.getInstance();
   private ResourceBundle menuLabels = ResourceBundle.getBundle("de.marza.firstspirit.modules"
       + ".logging.MenuLabels");
 
@@ -35,7 +32,7 @@ public class ConsoleWindowTest {
     ConsoleWindow.getInstance().getFrame("Test").setDefaultCloseOperation(WindowConstants
         .EXIT_ON_CLOSE);
 
-    ConsoleWindow.getInstance().show(null);
+    ConsoleWindow.getInstance().show("Test");
 
     simulateLogEvents(ConsoleWindow.getInstance().getFrame(null));
   }
@@ -44,9 +41,11 @@ public class ConsoleWindowTest {
 
     final SecureRandom random = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
-      LOGGER.logInfo(i + ". test message");
+      System.out.println(i + ". test message " + (i % 3 != 0 ? "" : (i % 5 == 0 ? "INFO" :
+          (i % 7 == 0 ? "WARN" : "ERROR"))
+      )); //NOPMD
       Thread.currentThread().sleep(75 * random.nextInt(1));
-      LOGGER.logError(++i + ". logError");
+      System.err.println(++i + ". logError"); //NOPMD
       Thread.currentThread().sleep(500 * random.nextInt(2));
       if (!frame.isVisible()) {
         System.exit(0);

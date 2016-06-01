@@ -12,9 +12,13 @@ import javax.swing.event.HyperlinkListener;
 /**
  * The type Hyperlink executor.
  */
-public class HyperlinkExecutor implements HyperlinkListener {
+public final class HyperlinkExecutor implements HyperlinkListener {
 
   private static final Logger LOGGER = Logger.getInstance();
+
+  public HyperlinkExecutor() {
+    //empty
+  }
 
   private static boolean isClicked(final HyperlinkEvent event) {
     return event.getEventType() == HyperlinkEvent.EventType.ACTIVATED;

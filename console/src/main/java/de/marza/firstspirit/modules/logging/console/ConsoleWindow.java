@@ -211,16 +211,16 @@ public final class ConsoleWindow {
 
   @NotNull
   private JTextComponent setupLogView() {
-    final JTextComponent textComponent = new JTextPane();
-    textComponent.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-    window.getContentPane().add(new JScrollPane(textComponent));
-    return textComponent;
+    final JTextComponent textPane = new JTextPane();
+    textPane.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+    window.getContentPane().add(new JScrollPane(textPane));
+    return textPane;
   }
 
   private void setupConsole() {
     console = new MessageConsole(textComponent);
-    console.redirectOut(null, System.out);
     console.redirectErr(Color.RED, System.err);
+    console.redirectOut(null, System.out);
     console.setMaxMessageLines(MAX_LOG_LINES);
   }
 

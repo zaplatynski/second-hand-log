@@ -15,7 +15,7 @@ import javax.swing.Icon;
 /**
  * The type Create experiment site architect toolbar item.
  */
-public class LoggingViewToolbarItem implements ExecutableToolbarItem {
+public final class LoggingViewToolbarItem implements ExecutableToolbarItem {
 
   private final ResourceBundle menuLabels;
   private final ConsoleWindow consoleWindow;

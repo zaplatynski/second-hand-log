@@ -36,7 +36,7 @@ public class ReadTextFromFile {
    *
    * @return the j editor pane
    */
-  public JEditorPane readAsJEditor() {
+  public final JEditorPane readAsJEditor() {
     if (message == null) {
       final InputStream inputStream = getClass().getResourceAsStream(filePath); //NOPMD
       final InputStreamReader streamReader = new InputStreamReader(inputStream);

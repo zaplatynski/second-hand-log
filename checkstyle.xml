@@ -28,6 +28,46 @@
     </module>
 
     <module name="TreeWalker">
+        <module name="ThrowsCount">
+            <property name="max" value="2"/>
+        </module>
+
+        <module name="InterfaceIsType"/>
+        <module name="FinalClass"/>
+        <module name="ReturnCount">
+            <property name="max" value="0"/>
+            <property name="tokens" value="CTOR_DEF"/>
+        </module>
+        <module name="ReturnCount">
+            <property name="max" value="1"/>
+            <property name="tokens" value="LAMBDA"/>
+        </module>
+        <module name="ReturnCount">
+            <property name="max" value="3"/>
+            <property name="tokens" value="METHOD_DEF"/>
+        </module>
+        <module name="ParameterAssignment"/>
+        <module name="NoFinalizer"/>
+        <module name="SuperClone"/>
+        <module name="StringLiteralEquality"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="EmptyStatement"/>
+        <module name="EqualsAvoidNull"/>
+        <module name="EqualsHashCode"/>
+        <module name="MissingCtor"/>
+        <module name="MagicNumber">
+            <property name="tokens" value="NUM_DOUBLE, NUM_FLOAT"/>
+            <property name="ignoreNumbers" value="0, 0.5, 1"/>
+            <property name="ignoreFieldDeclaration" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+        </module>
+        <module name="ExplicitInitialization"/>
+        <module name="HiddenField">
+            <property name="ignoreSetter" value="true"/>
+            <property name="setterCanReturnItsClass" value="true"/>
+            <property name="ignoreConstructorParameter" value="true"/>
+        </module>
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
             <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
