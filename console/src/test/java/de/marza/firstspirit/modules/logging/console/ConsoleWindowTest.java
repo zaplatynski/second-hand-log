@@ -41,9 +41,20 @@ public class ConsoleWindowTest {
 
     final SecureRandom random = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
-      System.out.println(i + ". test message " + (i % 3 != 0 ? "" : (i % 5 == 0 ? "INFO" :
-          (i % 7 == 0 ? "WARN" : "ERROR"))
-      )); //NOPMD
+      String message = i + ". test message ";//NOPMD
+      if (i % 2 == 1) {
+        message += "DEBUG ";
+      }
+      if (i % 3 == 0) {
+        message += "INFO ";
+      }
+      if (i % 5 == 0) {
+        message += "WARN ";
+      }
+      if (i % 7 == 0) {
+        message += "ERROR ";
+      }
+      System.out.println(message); //NOPMD
       Thread.currentThread().sleep(75 * random.nextInt(1));
       System.err.println(++i + ". logError"); //NOPMD
       Thread.currentThread().sleep(500 * random.nextInt(2));

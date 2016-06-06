@@ -2,7 +2,6 @@ package de.marza.firstspirit.modules.logging.console;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -219,8 +218,8 @@ public final class ConsoleWindow {
 
   private void setupConsole() {
     console = new MessageConsole(textComponent);
-    console.redirectErr(Color.RED, System.err);
-    console.redirectOut(null, System.out);
+    console.redirectErr(System.err);
+    console.redirectOut(System.out);
     console.setMaxMessageLines(MAX_LOG_LINES);
   }
 

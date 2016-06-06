@@ -1,5 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import de.marza.firstspirit.modules.logging.console.utilities.Level;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -80,7 +82,7 @@ public class ConsoleOutputStreamTest {
     when(console.getTextComponent()).thenReturn(textComponent);
     when(textComponent.getDocument()).thenReturn(document);
 
-    testling = new ConsoleOutputStream(console, Color.BLACK, printStream);
+    testling = new ConsoleOutputStream(console, Level.DEFAULT, printStream);
 
     attributes = new SimpleAttributeSet();
     StyleConstants.setForeground(attributes, Color.BLACK);

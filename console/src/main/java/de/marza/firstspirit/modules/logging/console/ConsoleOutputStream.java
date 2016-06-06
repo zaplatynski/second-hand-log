@@ -1,6 +1,7 @@
 package de.marza.firstspirit.modules.logging.console;
 
-import java.awt.Color;
+import de.marza.firstspirit.modules.logging.console.utilities.Level;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -8,12 +9,11 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 
 /**
- * Class to intercept output from a PrintStream and add it to a Document.
- * <p>The output can optionally be redirected to a different PrintStream. The text displayed in
- * the Document can be color coded to indicate the output source.</p>
+ * Class to intercept output from a PrintStream and add it to a Document. <p>The output can
+ * optionally be redirected to a different PrintStream. The text displayed in the Document can be
+ * color coded to indicate the output source.</p>
  */
 public class ConsoleOutputStream extends ByteArrayOutputStream {
 
@@ -23,17 +23,18 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
   private final JTextComponent textComponent;
   private final boolean append;
   private final PrintStream printStream;
-  private final SimpleAttributeSet attributes;
+  private final Level defaultLevel;
+  private Level level;
   private boolean firstLine;
 
   /**
    * Specify the option text color and PrintStream.
    *
    * @param messageConsole the message console
-   * @param textColor      the text color
+   * @param defaultLevel   the default level
    * @param printStream    the print stream
    */
-  public ConsoleOutputStream(final MessageConsole messageConsole, final Color textColor,
+  public ConsoleOutputStream(final MessageConsole messageConsole, final Level defaultLevel,
                              final PrintStream printStream) {
     endOfLine = System.lineSeparator();
     buffer = new StringBuilder(80); //NOPMD
@@ -41,10 +42,8 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     document = textComponent.getDocument();
     append = messageConsole.isAppend();
     firstLine = append;
-    attributes = new SimpleAttributeSet();
-    if (textColor != null) {
-      StyleConstants.setForeground(attributes, textColor);
-    }
+    this.defaultLevel = defaultLevel;
+    level = defaultLevel;
     this.printStream = printStream;
   }
 
@@ -84,6 +83,8 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
       buffer.setLength(0);
     }
 
+    level = level.valueOfFragment(message);
+
     if (endOfLine.equals(message)) {
       buffer.append(message);
     } else {
@@ -98,6 +99,7 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
    * as: message + newLine.
    */
   private void handleInsert(final String message) {
+    level = level.valueOfFragment(message);
     buffer.append(message);
 
     if (endOfLine.equals(message)) {
@@ -121,8 +123,8 @@ public class ConsoleOutputStream extends ByteArrayOutputStream {
     final String line = buffer.toString();
 
     try {
-      final SimpleAttributeSet textStyle = this.attributes;
-
+      final SimpleAttributeSet textStyle = level.getAttributes();
+      level = defaultLevel;
       if (append) {
         final int offset = document.getLength();
         document.insertString(offset, line, textStyle);

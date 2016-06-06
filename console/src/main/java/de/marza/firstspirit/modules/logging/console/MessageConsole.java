@@ -1,5 +1,6 @@
 package de.marza.firstspirit.modules.logging.console;
 
+import de.marza.firstspirit.modules.logging.console.utilities.Level;
 import de.marza.firstspirit.modules.logging.console.utilities.LimitLinesDocumentListener;
 
 import java.awt.Color;
@@ -57,11 +58,10 @@ public class MessageConsole {
    * PrintStream. When a PrintStream is specified the message will be added to the Document before
    * it is also written to the PrintStream.
    *
-   * @param textColor   the text color
    * @param printStream the print stream
    */
-  public void redirectOut(final Color textColor, final PrintStream printStream) {
-    final ConsoleOutputStream cos = new ConsoleOutputStream(this, textColor, printStream);
+  public void redirectOut(final PrintStream printStream) {
+    final ConsoleOutputStream cos = new ConsoleOutputStream(this, Level.DEFAULT, printStream);
     System.setOut(new PrintStream(cos, true));
   }
 
@@ -70,7 +70,7 @@ public class MessageConsole {
    * null PrintStream.
    */
   public void redirectOut() {
-    redirectOut(null, null);
+    redirectOut(null);
   }
 
   /**
@@ -78,7 +78,7 @@ public class MessageConsole {
    * null PrintStream.
    */
   public void redirectErr() {
-    redirectErr(null, null);
+    redirectErr(null);
   }
 
   /**
@@ -88,11 +88,10 @@ public class MessageConsole {
    * PrintStream. When a PrintStream is specified the message will be added to the Document before
    * it is also written to the PrintStream.</p>
    *
-   * @param textColor   the text color
    * @param printStream the print stream
    */
-  public void redirectErr(final Color textColor, final PrintStream printStream) {
-    final ConsoleOutputStream cos = new ConsoleOutputStream(this, textColor, printStream);
+  public void redirectErr(final PrintStream printStream) {
+    final ConsoleOutputStream cos = new ConsoleOutputStream(this, Level.ERROR, printStream);
     System.setErr(new PrintStream(cos, true));
   }
 
