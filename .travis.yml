@@ -4,6 +4,6 @@ jdk:
 cache:
   directories:
     - ~/.m2
-script: mvn clean package -pl console
+script: mvn clean install -pl console -P analysis
 install:
     -

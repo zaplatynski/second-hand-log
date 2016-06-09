@@ -16,21 +16,21 @@ public class LevelTest {
 
   @Test
   public void refineByNextFragementError() throws Exception {
-    final Level result = tesling.valueOfFragment("DEBUG INFO WARN ERROR This is a message...");
+    final Level result = tesling.valueOfFragment("DEBUG INFO Error WARN This is a message...");
 
     assertThat(result, is(Level.ERROR));
   }
 
   @Test
   public void refineByNextFragementWarning() throws Exception {
-    final Level result = tesling.valueOfFragment("DEBUG INFO WARN This is a message...");
+    final Level result = tesling.valueOfFragment("DEBUG info WARN This is a message...");
 
     assertThat(result, is(Level.WARN));
   }
 
   @Test
   public void refineByNextFragementInfo() throws Exception {
-    final Level result = tesling.valueOfFragment("DEBUG INFO This is a message...");
+    final Level result = tesling.valueOfFragment("iNFO DEBUG This is a message...");
 
     assertThat(result, is(Level.INFO));
   }

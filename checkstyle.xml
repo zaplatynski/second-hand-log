@@ -21,6 +21,9 @@
     <property name="severity" value="error"/>
 
     <property name="fileExtensions" value="java, properties, xml"/>
+
+    <module name="SuppressionCommentFilter"/>
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter">
@@ -28,6 +31,13 @@
     </module>
 
     <module name="TreeWalker">
+        <module name="FileContentsHolder"/>
+        <module name="ClassDataAbstractionCoupling"/>
+        <module name="ClassFanOutComplexity"/>
+        <module name="CyclomaticComplexity"/>
+        <module name="JavaNCSS"/>
+        <module name="NPathComplexity"/>
+
         <module name="ThrowsCount">
             <property name="max" value="2"/>
         </module>
@@ -224,10 +234,22 @@
                       value="^@return the *|^This method returns |^A [{]@code [a-zA-Z0-9]+[}]( is a )"/>
         </module>
         <module name="JavadocParagraph"/>
+        <module name="JavadocStyle">
+            <property name="severity" value="info"/>
+            <property name="checkFirstSentence" value="true"/>
+            <property name="scope" value="private"/>
+            <property name="checkEmptyJavadoc" value="false"/>
+            <property name="checkHtml" value="true"/>
+        </module>
         <module name="AtclauseOrder">
             <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
             <property name="target"
                       value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+        </module>
+        <module name="RedundantModifier">
+            <property name="severity" value="info"/>
+            <property name="tokens"
+                      value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF"/>
         </module>
         <module name="JavadocMethod">
             <property name="scope" value="public"/>

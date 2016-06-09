@@ -38,6 +38,7 @@ public class MenuController implements Runnable {
     console = consoleWindow.getConsole();
   }
 
+  //CHECKSTYLE:OFF
   @Override
   public final void run() {
 
@@ -84,6 +85,7 @@ public class MenuController implements Runnable {
         final String errorTitle = menuLabels.getString("unkownMenuCommand");
         JOptionPane.showMessageDialog(parent, errorMessage, errorTitle, JOptionPane.ERROR_MESSAGE);
     }
+    //CHECKSTYLE:ON
   }
 
 }

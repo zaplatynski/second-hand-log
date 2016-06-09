@@ -1,6 +1,7 @@
 package de.marza.firstspirit.modules.logging.console.utilities;
 
 import java.awt.Color;
+import java.util.Locale;
 
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -38,8 +39,10 @@ public enum Level {
 
 
   private final SimpleAttributeSet attributes;
+  private final String nameToLowerCase;
 
   Level(final Color textColor) {
+    nameToLowerCase = name().toLowerCase();
     attributes = new SimpleAttributeSet();
     StyleConstants.setForeground(attributes, textColor);
   }
@@ -51,7 +54,7 @@ public enum Level {
 
   private static Level findLevel(final String messageFragment, final Level... levels) {
     for (final Level level : levels) {
-      if (messageFragment.contains(level.name())) {
+      if (messageFragment.contains(level.nameToLowerCase())) {
         return level.valueOfFragment(messageFragment);
       }
     }
@@ -75,6 +78,10 @@ public enum Level {
     return attributes;
   }
 
+  public String nameToLowerCase() {
+    return nameToLowerCase;
+  }
+
   /**
    * Value of fragment level.
    *
@@ -86,22 +93,24 @@ public enum Level {
     if (isEmpty(messageFragment)) {
       return this;
     }
-    Level level = this;
+    final String lowerCaseFragment = messageFragment.toLowerCase(Locale.getDefault());
+    Level level = returnLevel;
     switch (this) {
       case DEBUG:
-        level = findLevel(messageFragment, INFO, WARN, ERROR);
+        level = findLevel(lowerCaseFragment, INFO, WARN, ERROR);
         if (level != DEFAULT) {
           returnLevel = level;
         }
         break;
       case INFO:
-        level = findLevel(messageFragment, WARN, ERROR);
+        level = findLevel(lowerCaseFragment, WARN, ERROR);
         if (level != DEFAULT) {
           returnLevel = level;
         }
         break;
       case WARN:
-        if (messageFragment.contains(ERROR.name())) {
+        final String errorToLowerCase = ERROR.nameToLowerCase();
+        if (lowerCaseFragment.contains(errorToLowerCase)) { //NOPMD
           returnLevel = ERROR;
         }
         break;
@@ -110,7 +119,7 @@ public enum Level {
         break;
       case DEFAULT:
       default:
-        returnLevel = findLevel(messageFragment, DEBUG, INFO, WARN, ERROR);
+        returnLevel = findLevel(lowerCaseFragment, DEBUG, INFO, WARN, ERROR);
         break;
     }
     return returnLevel;
