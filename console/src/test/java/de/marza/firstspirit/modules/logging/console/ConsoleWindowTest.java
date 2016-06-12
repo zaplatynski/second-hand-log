@@ -55,9 +55,9 @@ public class ConsoleWindowTest {
         message += "ERROR ";
       }
       System.out.println(message); //NOPMD
-      Thread.currentThread().sleep(75 * random.nextInt(1));
+      Thread.currentThread().sleep(75L * random.nextInt(1));
       System.err.println(++i + ". logError"); //NOPMD
-      Thread.currentThread().sleep(500 * random.nextInt(2));
+      Thread.currentThread().sleep(500L * random.nextInt(2));
       if (!frame.isVisible()) {
         System.exit(0);
       }
@@ -77,6 +77,6 @@ public class ConsoleWindowTest {
     final JFrame frame = ConsoleWindow.getInstance().getFrame("Part of Window Tile");
 
     final String expectedTitle = menuLabels.getString("appName") + " / Part of Window Tile";
-    assertThat(frame.getTitle(), is(expectedTitle));
+    assertThat("Expect specific value", frame.getTitle(), is(expectedTitle));
   }
 }

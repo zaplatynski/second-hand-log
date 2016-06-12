@@ -33,7 +33,7 @@ public class LogClipboardOnwerTest {
    */
   @Test
   public void getInstance() throws Exception {
-    assertThat(testling, is(sameInstance(LogClipboardOnwer.getInstance())));
+    assertThat("Expect specific value", testling, is(sameInstance(LogClipboardOnwer.getInstance())));
   }
 
   /**

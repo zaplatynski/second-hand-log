@@ -34,7 +34,7 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void getLabel() throws Exception {
-    assertThat(testling.getLabel(null), not(isEmptyString()));
+    assertThat("Expect specific value", testling.getLabel(null), not(isEmptyString()));
   }
 
   /**
@@ -44,7 +44,7 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void isEnabled() throws Exception {
-    assertThat(testling.isEnabled(null), is(true));
+    assertThat("Expect specific value", testling.isEnabled(null), is(true));
   }
 
   /**
@@ -54,7 +54,7 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void isVisible() throws Exception {
-    assertThat(testling.isVisible(null), is(true));
+    assertThat("Expect specific value", testling.isVisible(null), is(true));
   }
 
   /**
@@ -64,7 +64,7 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void getIcon() throws Exception {
-    assertThat(testling.getIcon(null), is(notNullValue()));
+    assertThat("Expect specific value", testling.getIcon(null), is(notNullValue()));
   }
 
   /**
@@ -74,7 +74,7 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void getPressedIcon() throws Exception {
-    assertThat(testling.getPressedIcon(null), is(notNullValue()));
+    assertThat("Expect specific value", testling.getPressedIcon(null), is(notNullValue()));
   }
 
   /**
@@ -84,6 +84,6 @@ public class LoggingViewToolbarItemTest {
    */
   @Test
   public void getRollOverIcon() throws Exception {
-    assertThat(testling.getRollOverIcon(null), is(notNullValue()));
+    assertThat("Expect specific value", testling.getRollOverIcon(null), is(notNullValue()));
   }
 }

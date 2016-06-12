@@ -38,7 +38,7 @@ public class ClipboardAccessTest {
   public void transfer() throws Exception {
     testling.copy("Test 123");
 
-    assertThat(testling.paste(), is("Test 123"));
+    assertThat("Expect specific value", testling.paste(), is("Test 123"));
   }
 
 }

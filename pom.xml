@@ -214,29 +214,49 @@
 
     <profiles>
         <profile>
-            <id>coverage</id>
+            <id>sonar</id>
+            <properties>
+                <sonar.projectName>${project.name}</sonar.projectName>
+                <sonar.projectKey>second-hand-log</sonar.projectKey>
+                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+                <coverage.reports.dir>${basedir}/target/coverage-reports</coverage.reports.dir>
+                <sonar.jacoco.itReportPath>${coverage.reports.dir}/jacoco-it.exec
+                </sonar.jacoco.itReportPath>
+                <sonar.jacoco.reportPath>${coverage.reports.dir}/jacoco-unit.exec
+                </sonar.jacoco.reportPath>
+            </properties>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>3.0.2</version>
+                    </plugin>
                     <plugin>
                         <groupId>org.jacoco</groupId>
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>0.7.6.201602180812</version>
                         <executions>
                             <execution>
-                                <id>prepare-agent</id>
+                                <id>prepare-unit-tests</id>
                                 <goals>
                                     <goal>prepare-agent</goal>
                                 </goals>
                                 <configuration>
-                                    <propertyName>maven.surefire.debug</propertyName>
+                                    <destFile>${sonar.jacoco.reportPath}</destFile>
                                 </configuration>
                             </execution>
                             <execution>
-                                <id>report</id>
-                                <phase>test</phase>
+                                <id>prepare-integration-tests</id>
                                 <goals>
-                                    <goal>report</goal>
+                                    <goal>prepare-agent</goal>
                                 </goals>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.itReportPath}</destFile>
+                                    <propertyName>itCoverageAgent</propertyName>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

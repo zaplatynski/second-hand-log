@@ -35,8 +35,8 @@ public class LoggingViewToolbarItemsPluginTest {
    */
   @Test
   public void getItems() throws Exception {
-    assertThat(testling.getItems(), is(not(empty())));
-    assertThat(testling.getItems(), hasSize(1));
+    assertThat("Expect specific value", testling.getItems(), is(not(empty())));
+    assertThat("Expect specific value", testling.getItems(), hasSize(1));
   }
 
 }

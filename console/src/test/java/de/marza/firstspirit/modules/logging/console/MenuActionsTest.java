@@ -39,7 +39,7 @@ public class MenuActionsTest {
     final MenuActions menuAction = (MenuActions) testcase[0];
     final Integer lines = (Integer) testcase[1];
 
-    assertThat(menuAction.getLines(), is(lines));
+    assertThat("Expect specific value", menuAction.getLines(), is(lines));
   }
 
   /**
@@ -49,7 +49,7 @@ public class MenuActionsTest {
    */
   @Test
   public void logLines() throws Exception {
-    assertThat(MenuActions.logLines(),
+    assertThat("Expect specific value", MenuActions.logLines(),
         contains(MenuActions.SHOW_LOG_LINES_100,
             MenuActions.SHOW_LOG_LINES_500,
             MenuActions.SHOW_LOG_LINES_1K,

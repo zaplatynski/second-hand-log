@@ -42,11 +42,11 @@ public class LimitLinesDocumentListenerTest {
    */
   @Test
   public void testIsRemoveFromStart() throws Exception {
-    assertThat(testling.isRemoveFromStart(), is(true));
+    assertThat("Expect specific value", testling.isRemoveFromStart(), is(true));
 
     testling = new LimitLinesDocumentListener(10, false);
 
-    assertThat(testling.isRemoveFromStart(), is(false));
+    assertThat("Expect specific value", testling.isRemoveFromStart(), is(false));
   }
 
   /**
@@ -56,6 +56,6 @@ public class LimitLinesDocumentListenerTest {
    */
   @Test
   public void testGetMaximumLines() throws Exception {
-    assertThat(testling.getMaximumLines(), is(10));
+    assertThat("Expect specific value", testling.getMaximumLines(), is(10));
   }
 }

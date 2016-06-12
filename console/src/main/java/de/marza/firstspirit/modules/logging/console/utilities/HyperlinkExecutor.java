@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -21,7 +22,7 @@ public final class HyperlinkExecutor implements HyperlinkListener {
   }
 
   private static boolean isClicked(final HyperlinkEvent event) {
-    return event.getEventType() == HyperlinkEvent.EventType.ACTIVATED;
+    return Objects.equals(event.getEventType(), HyperlinkEvent.EventType.ACTIVATED);
   }
 
   /**

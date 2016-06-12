@@ -51,7 +51,7 @@ public class ReadTextFromFileTest {
         "<head>\n    \n  </head>\n  " +
         "<body>\n    This is a test!\n  </body>\n" +
         "</html>\n";
-    assertThat(editorPane.getText(), is(expectedText));
+    assertThat("Expect specific value", editorPane.getText(), is(expectedText));
   }
 
   /**
@@ -79,7 +79,7 @@ public class ReadTextFromFileTest {
 
     testling.readAsJEditor();
 
-    assertThat("An logError occurred while reading the about text: java.lang.NullPointerException" + EOL,
+    assertThat("Expect specific value", "An logError occurred while reading the about text: java.lang.NullPointerException" + EOL,
         is(rule.getLog()));
   }
 }

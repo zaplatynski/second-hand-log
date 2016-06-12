@@ -54,7 +54,7 @@ public class MessageConsoleTest {
    */
   @Test
   public void getDocument() throws Exception {
-    assertThat(testling.getDocument(), is(sameInstance(document)));
+    assertThat("Expect specific value", testling.getDocument(), is(sameInstance(document)));
   }
 
   /**
@@ -64,7 +64,7 @@ public class MessageConsoleTest {
    */
   @Test
   public void isAppend() throws Exception {
-    assertThat(testling.isAppend(), is(true));
+    assertThat("Expect specific value", testling.isAppend(), is(true));
   }
 
   /**
@@ -74,7 +74,7 @@ public class MessageConsoleTest {
    */
   @Test
   public void getTextComponent() throws Exception {
-    assertThat(testling.getTextComponent(), is(sameInstance(textComponent)));
+    assertThat("Expect specific value", testling.getTextComponent(), is(sameInstance(textComponent)));
   }
 
 }
