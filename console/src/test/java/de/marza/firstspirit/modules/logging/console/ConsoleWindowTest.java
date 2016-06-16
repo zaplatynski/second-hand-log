@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.awt.GraphicsEnvironment;
 import java.security.SecureRandom;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -34,14 +35,25 @@ public class ConsoleWindowTest {
 
     ConsoleWindow.getInstance().show("Test");
 
-    simulateLogEvents(ConsoleWindow.getInstance().getFrame(null));
+    new Thread(new Runnable(){
+      @Override
+      public void run() {
+        try {
+          simulateLogEvents(ConsoleWindow.getInstance().getFrame(null));
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+
+      }
+    }).start();
+
   }
 
   private static void simulateLogEvents(final JFrame frame) throws InterruptedException {
 
     final SecureRandom random = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
-      String message = i + ". test message ";//NOPMD
+      String message = "";//NOPMD
       if (i % 2 == 1) {
         message += "DEBUG ";
       }
@@ -54,7 +66,8 @@ public class ConsoleWindowTest {
       if (i % 7 == 0) {
         message += "ERROR ";
       }
-      System.out.println(message); //NOPMD
+      message +=i + ". test message ";
+      System.out.println(message + " " + UUID.randomUUID()+ " " + UUID.randomUUID()); //NOPMD
       Thread.currentThread().sleep(75L * random.nextInt(1));
       System.err.println(++i + ". logError"); //NOPMD
       Thread.currentThread().sleep(500L * random.nextInt(2));

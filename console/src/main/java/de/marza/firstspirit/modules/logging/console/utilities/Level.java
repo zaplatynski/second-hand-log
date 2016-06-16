@@ -54,11 +54,16 @@ public enum Level {
 
   private static Level findLevel(final String messageFragment, final Level... levels) {
     for (final Level level : levels) {
-      if (messageFragment.contains(level.nameToLowerCase())) {
-        return level.valueOfFragment(messageFragment);
+      if (isLevel(level, messageFragment)) {
+        return level.valueOfFragment(false, messageFragment); //NOPMD
       }
     }
     return DEFAULT;
+  }
+
+  private static boolean isLevel(final Level level, final String messageFragment) {
+    final String lowerCaseLevel = level.nameToLowerCase();
+    return messageFragment.startsWith(lowerCaseLevel) || messageFragment.contains(lowerCaseLevel);
   }
 
   private static boolean isEmpty(final String messageFragment) {
@@ -89,29 +94,36 @@ public enum Level {
    * @return the level
    */
   public Level valueOfFragment(final String messageFragment) {
+    return valueOfFragment(true, messageFragment);
+  }
+
+  private Level valueOfFragment(final boolean doTrimAndLoweCase, final String messageFragment) {
     if (isEmpty(messageFragment)) {
       return this;
     }
-    final String lowerCaseFragment = messageFragment.toLowerCase(Locale.getDefault());
-    Level level;
-    Level returnLevel = this;
+    final String lowerCaseFragment;
+    if (doTrimAndLoweCase) {
+      final String cleaned = messageFragment.trim();
+      final Locale locale = Locale.getDefault();
+      lowerCaseFragment = cleaned.toLowerCase(locale); //NOPMD
+    } else {
+      lowerCaseFragment = messageFragment;
+    }
+    Level returnLevel;
     switch (this) {
       case DEBUG:
-        level = findLevel(lowerCaseFragment, INFO, WARN, ERROR);
-        if (level != DEFAULT) {
-          returnLevel = level;
-        }
+        returnLevel = findLevel(lowerCaseFragment, INFO, WARN, ERROR);
+        returnLevel = figureOut(returnLevel);
         break;
       case INFO:
-        level = findLevel(lowerCaseFragment, WARN, ERROR);
-        if (level != DEFAULT) {
-          returnLevel = level;
-        }
+        returnLevel = findLevel(lowerCaseFragment, WARN, ERROR);
+        returnLevel = figureOut(returnLevel);
         break;
       case WARN:
-        final String errorToLowerCase = ERROR.nameToLowerCase();
-        if (lowerCaseFragment.contains(errorToLowerCase)) { //NOPMD
+        if (isLevel(ERROR, lowerCaseFragment)) {
           returnLevel = ERROR;
+        } else {
+          returnLevel = this;
         }
         break;
       case ERROR:
@@ -121,6 +133,16 @@ public enum Level {
       default:
         returnLevel = findLevel(lowerCaseFragment, DEBUG, INFO, WARN, ERROR);
         break;
+    }
+    return returnLevel;
+  }
+
+  private Level figureOut(final Level level) {
+    final Level returnLevel;
+    if (level == DEFAULT) {
+      returnLevel = this;
+    } else {
+      returnLevel = level;
     }
     return returnLevel;
   }
