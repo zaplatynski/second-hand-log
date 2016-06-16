@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <name>${project.artifactId}</name>
-    <displayname>${project.name}</displayname>
+    <displayname>${display.name}</displayname>
     <version>${project.version}</version>
     <description>${module.description}</description>
     <vendor>${main.developer}</vendor>

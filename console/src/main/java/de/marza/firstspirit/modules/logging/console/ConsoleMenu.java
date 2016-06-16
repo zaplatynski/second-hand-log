@@ -122,7 +122,7 @@ public class ConsoleMenu {
     edit.add(viewLogLines);
     final ButtonGroup logLinesGroup = new ButtonGroup();
     for (final MenuActions maxLogLines : MenuActions.logLines()) {
-      final JRadioButtonMenuItem submenuItem = new JRadioButtonMenuItem("Maximum "
+      final JRadioButtonMenuItem submenuItem = new JRadioButtonMenuItem("Maximum " //NOPMD
           + maxLogLines.getLines());
       viewLogLines.add(submenuItem);
       logLinesGroup.add(submenuItem);

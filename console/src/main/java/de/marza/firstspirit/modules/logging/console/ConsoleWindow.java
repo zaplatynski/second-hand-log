@@ -85,11 +85,12 @@ public final class ConsoleWindow {
 
   @NotNull
   private String createAppName(final String projectName) {
-    String appName = menuLabels.getString("appName");
+    final StringBuilder appName = new StringBuilder(menuLabels.getString("appName"));
     if (projectName != null) {
-      appName += " / " + projectName;
+      appName.append(" / ");
+      appName.append(projectName);
     }
-    return appName;
+    return appName.toString();
   }
 
   /**

@@ -30,7 +30,18 @@
         <property name="eachLine" value="true"/>
     </module>
 
+    <module name="Translation">
+        <property name="fileExtensions" value="properties"/>
+    </module>
+
+    <module name="NewlineAtEndOfFile">
+        <property name="fileExtensions" value="java, xml"/>
+    </module>
+
     <module name="TreeWalker">
+        <module name="TrailingComment">
+            <property name="legalComment" value="NOPMD"/>
+        </module>
         <module name="FileContentsHolder"/>
         <module name="ClassDataAbstractionCoupling"/>
         <module name="ClassFanOutComplexity"/>
@@ -96,6 +107,9 @@
                       value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
         </module>
         <module name="AvoidStarImport"/>
+        <module name="IllegalImport"/>
+        <module name="RedundantImport"/>
+        <module name="UnusedImports"/>
         <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
         <module name="EmptyBlock">

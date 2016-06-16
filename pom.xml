@@ -52,7 +52,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <global.version>1.0.11</global.version>
-        <display.name>The Second-Hand Log</display.name>
+        <display.name>Second-Hand Log</display.name>
         <module.description>A tiny extension for the FirstSpirit CMS for displaying a log console
         </module.description>
         <main.developer>Marian Zaplatynski</main.developer>
@@ -214,56 +214,6 @@
 
     <profiles>
         <profile>
-            <id>sonar</id>
-            <properties>
-                <sonar.projectName>${project.name}</sonar.projectName>
-                <sonar.projectKey>second-hand-log</sonar.projectKey>
-                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-                <coverage.reports.dir>${basedir}/target/coverage-reports</coverage.reports.dir>
-                <sonar.jacoco.itReportPath>${coverage.reports.dir}/jacoco-it.exec
-                </sonar.jacoco.itReportPath>
-                <sonar.jacoco.reportPath>${coverage.reports.dir}/jacoco-unit.exec
-                </sonar.jacoco.reportPath>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.sonarsource.scanner.maven</groupId>
-                        <artifactId>sonar-maven-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.7.6.201602180812</version>
-                        <executions>
-                            <execution>
-                                <id>prepare-unit-tests</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                                <configuration>
-                                    <destFile>${sonar.jacoco.reportPath}</destFile>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>prepare-integration-tests</id>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                                <phase>pre-integration-test</phase>
-                                <configuration>
-                                    <destFile>${sonar.jacoco.itReportPath}</destFile>
-                                    <propertyName>itCoverageAgent</propertyName>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>analysis</id>
             <build>
                 <plugins>
@@ -316,6 +266,7 @@
                                 <ruleset>/rulesets/java/unusedcode.xml</ruleset>
                                 <ruleset>/rulesets/java/design.xml</ruleset>
                                 <ruleset>/rulesets/java/strictexception.xml</ruleset>
+                                <ruleset>/rulesets/java/optimizations.xml</ruleset>
                             </rulesets>
                         </configuration>
                         <executions>

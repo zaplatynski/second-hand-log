@@ -89,12 +89,12 @@ public enum Level {
    * @return the level
    */
   public Level valueOfFragment(final String messageFragment) {
-    Level returnLevel = this;
     if (isEmpty(messageFragment)) {
       return this;
     }
     final String lowerCaseFragment = messageFragment.toLowerCase(Locale.getDefault());
-    Level level = returnLevel;
+    Level level;
+    Level returnLevel = this;
     switch (this) {
       case DEBUG:
         level = findLevel(lowerCaseFragment, INFO, WARN, ERROR);

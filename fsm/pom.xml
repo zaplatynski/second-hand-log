@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>the-second-hand-log</artifactId>
-    <name>${display.name}</name>
+    <name>${display.name} FSM</name>
     <packaging>fsm</packaging>
 
     <dependencies>
