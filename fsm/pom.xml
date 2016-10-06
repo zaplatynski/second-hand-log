@@ -5,13 +5,13 @@
     <parent>
         <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
         <artifactId>parent</artifactId>
-        <version>${global.version}</version>
+        <version>${global-version}</version>
         <relativePath>/..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>the-second-hand-log</artifactId>
-    <name>${display.name} FSM</name>
+    <name>${display-name} FSM</name>
     <packaging>fsm</packaging>
 
     <dependencies>
@@ -61,7 +61,7 @@
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>1.0</version>
+                <version>2.1</version>
                 <extensions>true</extensions>
             </plugin>
 
@@ -86,7 +86,7 @@
                     <attach>false</attach>
                     <appendAssemblyId>false</appendAssemblyId>
                     <descriptors>
-                        <descriptor>src/assembly/fsm.xml</descriptor>
+                        <descriptor>src/main/assembly/fsm.xml</descriptor>
                     </descriptors>
                 </configuration>
             </plugin>

@@ -8,9 +8,9 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
-            <source>src/main/resources/module.xml</source>
+            <source>target/module.xml</source>
             <outputDirectory>/META-INF</outputDirectory>
-            <filtered>true</filtered>
+            <filtered>false</filtered>
         </file>
         <file>
             <source>../LICENSE</source>

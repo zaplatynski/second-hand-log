@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <name>${project.artifactId}</name>
-    <displayname>${display.name}</displayname>
+    <displayname>${display-name}</displayname>
     <version>${project.version}</version>
-    <description>${module.description}</description>
-    <vendor>${main.developer}</vendor>
+    <description>${module-description}</description>
+    <vendor>${main-developer}</vendor>
     <components>
         <public>
             <name>logging-console-button</name>

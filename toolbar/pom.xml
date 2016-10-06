@@ -5,13 +5,13 @@
     <parent>
         <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
         <artifactId>parent</artifactId>
-        <version>${global.version}</version>
+        <version>${global-version}</version>
         <relativePath>/..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>toolbar</artifactId>
-    <name>${display.name} Toolbar</name>
+    <name>${display-name} Toolbar</name>
     <packaging>jar</packaging>
 
     <dependencies>

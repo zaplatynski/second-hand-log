@@ -47,7 +47,7 @@ public class ModuleXmlTest {
    */
   @BeforeClass
   public static void setUpBefore() throws Exception {
-    final File file = new File(ClassLoader.getSystemClassLoader().getResource("module.xml").toURI());
+    final File file = new File("target/module.xml");
     final String content = FileUtils.readFileToString(file);
     moduleXML = createXMLfromString(content);
 
