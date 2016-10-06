@@ -1,4 +1,4 @@
-#  The Second-Hand Log  [![Dependency Status](https://www.versioneye.com/user/projects/5757bf0c7757a0004a1de172/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5757bf0c7757a0004a1de172) [![Build Status](https://travis-ci.org/zaplatynski/second-hand-log.svg?branch=master)](https://travis-ci.org/zaplatynski/second-hand-log) [![GitHub version](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log.svg)](https://github.com/zaplatynski/second-hand-log/releases/latest)
+#  The Second-Hand Log  [![Dependency Status](https://www.versioneye.com/user/projects/5757bf0c7757a0004a1de172/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5757bf0c7757a0004a1de172) [![Build Status](https://travis-ci.org/zaplatynski/second-hand-log.svg?branch=master)](https://travis-ci.org/zaplatynski/second-hand-log) [![GitHub version](https://badge.fury.io/gh/zaplatynski%2Fsecond-hand-log.svg)](https://github.com/zaplatynski/second-hand-log/releases/latest)
 
 The Second-Hand Log is a tiny extension for the [FirstSpirit CMS](http://www.e-spirit.com/) based on [Rob Camick's Message Console](https://tips4java.wordpress.com/2008/11/08/message-console/).
 
