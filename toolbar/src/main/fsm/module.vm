@@ -1,0 +1,11 @@
+<public>
+    <name>logging-console-button</name>
+    <displayname>Logging Console</displayname>
+    <class>de.marza.firstspirit.modules.logging.toolbar.LoggingViewToolbarItemsPlugin</class>
+    <resources>
+        #set($myself = $project.artifact)
+        #set($myFile = "lib/${myself.artifactId}-${myself.version}.${myself.type}")
+        <resource scope="module" name="${myself.artifactId}" version="${myself.version}">${myFile}</resource>
+        #addResources($project "module" "lib")
+     </resources>
+</public>
