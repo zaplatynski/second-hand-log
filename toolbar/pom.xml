@@ -29,9 +29,27 @@
             <version>${project.parent.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
         <plugins>
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>

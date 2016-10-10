@@ -1,6 +1,6 @@
 <public>
-    <name>logging-console-button</name>
-    <displayname>Logging Console</displayname>
+    <name>${project.artifactId}</name>
+    <displayname>${project.name}</displayname>
     <class>de.marza.firstspirit.modules.logging.toolbar.LoggingViewToolbarItemsPlugin</class>
     <resources>
         #set($myself = $project.artifact)
