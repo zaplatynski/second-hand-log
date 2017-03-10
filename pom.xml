@@ -51,7 +51,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <global-version>1.0.11</global-version>
+        <global-version>1.0.12</global-version>
         <display-name>Second-Hand Log</display-name>
         <module-description>A tiny extension for the FirstSpirit CMS for displaying a log console
         </module-description>
