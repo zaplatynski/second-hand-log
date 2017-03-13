@@ -9,22 +9,20 @@
     <files>
         <file>
             <source>target/module.xml</source>
-            <outputDirectory>/META-INF</outputDirectory>
+            <outputDirectory>META-INF</outputDirectory>
             <filtered>false</filtered>
         </file>
         <file>
             <source>../LICENSE</source>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory></outputDirectory>
             <filtered>false</filtered>
         </file>
     </files>
     <dependencySets>
         <dependencySet>
-            <outputDirectory>/lib</outputDirectory>
-            <includes>
-                <include>${project.groupId}:console</include>
-                <include>${project.groupId}:toolbar</include>
-            </includes>
+            <outputDirectory>lib</outputDirectory>
+            <useProjectAttachments>true</useProjectAttachments>
+            <useTransitiveDependencies>true</useTransitiveDependencies>
             <useTransitiveFiltering>true</useTransitiveFiltering>
         </dependencySet>
     </dependencySets>
