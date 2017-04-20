@@ -8,7 +8,7 @@ In contrast to the Java's JConsole it will keep the log and can be reopened.
 
 ## Obsolete since FirstSpirit 5.2 R7
 
-Since FirstSpirit version 5.2 R7 the Second-Hand Log FirstSpirit module is obsolete since the ServerManager and SiteArchitect provide a logging functionality build-in from the help menu.
+Since FirstSpirit version 5.2 R7 the Second-Hand Log FirstSpirit module is obsolete because the ServerManager and SiteArchitect provide a logging functionality build-in from the help menu.
 
 ## Download
 
