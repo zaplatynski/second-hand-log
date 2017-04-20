@@ -6,6 +6,10 @@ Its aim is to help FirstSpirit template and module developers during their work 
 
 In contrast to the Java's JConsole it will keep the log and can be reopened.
 
+## Obsolete since FirstSpirit 5.2 R7
+
+Since FirstSpirit version 5.2 R7 the Second-Hand Log FirstSpirit module is obsolete since the ServerManager and SiteArchitect provide a logging functionality build-in from the help menu.
+
 ## Download
 
 The *ready-to-use binary* releases are published here at GitHub: [github.com/zaplatynski/second-hand-log/releases](https://github.com/zaplatynski/second-hand-log/releases).

@@ -6,7 +6,7 @@
 
     <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
     <artifactId>parent</artifactId>
-    <version>${global-version}</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
 
     <name>${display-name} Parent</name>
@@ -50,16 +50,30 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <revision>1.0.13</revision>
         <java.version>1.8</java.version>
-        <global-version>1.0.12</global-version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <display-name>Second-Hand Log</display-name>
         <module-description>A tiny extension for the FirstSpirit CMS for displaying a log console
         </module-description>
         <main-developer>Marian Zaplatynski</main-developer>
+        <fsm-packagetype.version>2.2.0</fsm-packagetype.version>
+        <fsmode>isolated</fsmode>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>console</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>toolbar</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
@@ -151,21 +165,6 @@
             </resource>
         </resources>
 
-        <plugins>
-
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-
-        </plugins>
     </build>
 
     <profiles>

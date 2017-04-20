@@ -92,7 +92,7 @@ public class ModuleXmlTest {
    * @throws Exception the exception
    */
   @Test
-  public void testIfNameIsEqualTobasicworkflows() throws Exception {
+  public void testIfNameIsEqualToModuleName() throws Exception {
     final String expectedName = pomProperties.getProperty("name");
     assertThat("Expect a specific value", moduleXML, hasXPath("/module/name", equalTo(expectedName)));
   }

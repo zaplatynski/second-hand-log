@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
         <artifactId>parent</artifactId>
-        <version>${global-version}</version>
+        <version>${revision}</version>
         <relativePath>/..</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -26,7 +26,6 @@
         <dependency>
             <groupId>de.marza.firstspirit.modules.the-second-hand-log</groupId>
             <artifactId>console</artifactId>
-            <version>${project.parent.version}</version>
         </dependency>
 
         <dependency>
@@ -54,7 +53,7 @@
             <plugin>
                 <groupId>com.github.zaplatynski</groupId>
                 <artifactId>fsm-packagetype</artifactId>
-                <version>2.1.1</version>
+                <version>${fsm-packagetype.version}</version>
                 <executions>
                     <execution>
                         <goals>

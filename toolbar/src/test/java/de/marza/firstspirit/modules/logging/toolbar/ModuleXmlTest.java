@@ -47,12 +47,12 @@ public class ModuleXmlTest {
    */
   @BeforeClass
   public static void setUpBefore() throws Exception {
-    final File file = new File("target/module.xml");
+    final File file = new File("target/module-fragment.xml");
     final String content = FileUtils.readFileToString(file);
     moduleXML = createXMLfromString(content);
 
     pomProperties = new Properties();
-    pomProperties.load(ClassLoader.getSystemClassLoader().getResourceAsStream("moduleTest.properties"));
+    pomProperties.load(ClassLoader.getSystemClassLoader().getResourceAsStream("moduleFragementTest.properties"));
   }
 
   private static Node createXMLfromString(final String xmlString) throws Exception {
@@ -82,7 +82,7 @@ public class ModuleXmlTest {
    * @throws Exception the exception
    */
   @Test
-  public void testIfNameIsEqualTobasicworkflows() throws Exception {
+  public void testIfNameIsEqualToToolbarName() throws Exception {
     final String expectedName = pomProperties.getProperty("name");
     assertThat("Expect a specific value", moduleXML, hasXPath("/public/name", equalTo
         (expectedName)));
