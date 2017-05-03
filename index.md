@@ -14,9 +14,10 @@ How to use this FirstSpirit module is documented in the GitHub respository' Read
 at [github.com/zaplatynski/second-hand-log](https://github.com/zaplatynski/second-hand-log). 
 
 
-## Downloads
+## Releases
 
-The binary dowloads are available at the GitHub repository's [release page](https://github.com/zaplatynski/second-hand-log/releases).
+The binary downloads are available at the GitHub repository's [release page](https://github
+.com/zaplatynski/second-hand-log/releases).
 
 ##  Disclaimer
 
