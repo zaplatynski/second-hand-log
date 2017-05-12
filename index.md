@@ -11,8 +11,12 @@ logging feature was missing. It uses the
 ## More information
 
 How to use this FirstSpirit module is documented in the GitHub respository' ReadMe
-at [github.com/zaplatynski/second-hand-log](https://github.com/zaplatynski/second-hand-log). 
+at [github.com/zaplatynski/second-hand-log](https://github.com/zaplatynski/second-hand-log).
 
+## Help, bugs and feature requests
+
+Please file any **request for help**, **bug** or **feature request** at [github
+.com/zaplatynski/second-hand-log/issues](https://github.com/zaplatynski/second-hand-log/issues).
 
 ## Releases
 
